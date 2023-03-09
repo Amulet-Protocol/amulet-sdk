@@ -1,0 +1,14 @@
+# macOS Desktop Services Store.
+.DS_Store
+
+# Visual Studio Code workspace settings.
+.vscode
+
+# Dependency.
+/node_modules
+
+# Output folder.
+/dist
+
+# npm pack tarball.
+*.tgz
