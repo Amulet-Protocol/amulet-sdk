@@ -31,3 +31,9 @@ export type BuyCoverParam = {
   nftMint?: PublicKey;
   nftMetadataAddress?: PublicKey;
 };
+
+export type StakeSolForAuwtParam = {
+  provider: Provider;
+  staker: PublicKey;
+  stakeAmount: BN;
+};

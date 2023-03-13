@@ -2,10 +2,11 @@ import type {
   AddressConfig,
   BuyCoverParam,
   GetPremiumParam,
+  StakeSolForAuwtParam,
 } from '../entity';
 
 import { BN } from '@project-serum/anchor';
-import { PublicKey } from '@solana/web3.js';
+import { Keypair, PublicKey } from '@solana/web3.js';
 import { AmuletError, SendTransactionParam } from '../entity';
 import { findAta, findPda, setComputeBudgetInstruction } from './BlockchainUtil';
 import { ProgramManager } from './ProgramManager';
@@ -20,7 +21,7 @@ export class BlockchainClient {
     this.programManager = new ProgramManager(this.address);
   }
 
-  public async premiumGet(param: GetPremiumParam) {
+  public async premiumGet(param: GetPremiumParam): Promise<SendTransactionParam> {
     const { provider, productId, coverToken, coverAmount, days, nftMetadataAddress } = param;
 
     const program = this.programManager.getQuotationProgram(provider);
@@ -53,7 +54,7 @@ export class BlockchainClient {
 
   public async coverBuy(param: BuyCoverParam & {
     coverId: string;
-  }) {
+  }): Promise<SendTransactionParam> {
     const {
       provider, owner, referrer, productId, coverId, coverToken, coverAmount, days, nftMint,
       nftMetadataAddress,
@@ -107,6 +108,59 @@ export class BlockchainClient {
       .mergeTx(instruction);
   }
 
+  public async stakeSolAuwt(param: StakeSolForAuwtParam): Promise<SendTransactionParam> {
+    const { provider, staker, stakeAmount } = param;
+
+    const program = this.programManager.getSplStakingProgram(provider);
+
+    const instance = this.getStakingInstanceBySplTokenOrThrow(this.address.amtsol.mint.toString());
+
+    const tempAmtsolTaKeypair = Keypair.generate();
+
+    // Do not need to create the associated token account here because it will be created by the
+    // instruction.
+    const ataAuwt = await findAta(this.address.auwt.mint, staker);
+
+    const instruction = await program.mintFromSolToAuwt({
+      param: {
+        solAmount: stakeAmount,
+      },
+      accounts: {
+        depositor: staker,
+        auwtTokenTransferTo: ataAuwt,
+        amtsolTempTokenAccount: tempAmtsolTaKeypair.publicKey,
+        amtsolMint: this.address.amtsol.mint,
+        auwtMint: this.address.auwt.mint,
+        auwtMintAuthPda: this.address.auwt.mintAuthPda,
+        auwtProgram: this.address.Auwt.program,
+        auwtState: this.address.Auwt.state,
+        exchangeRateGroupState: this.address.programGroupMainState,
+        splSolStakingCallerPda: this.address.SplStaking.callerPda,
+        amuletSolStakingProgram: this.address.SolStaking.program,
+        solstakingProgramMetadataState: this.address.SolStaking.state,
+        solstakingProgramPosState: this.address.programPosState,
+        solstakingProgramPosSolPda: this.address.programPosSolPda,
+        solstakingProgramLiqSolPda: this.address.programLiqSolPda,
+        solstakingProgramLiqAmtsol: this.address.programLiqAmtsol,
+        solstakingProgramAuthPda: this.address.programAuthPda,
+        splstakingProgramSummaryState: this.address.programSummaryState,
+        splstakingProgramStakingInstanceState: instance.state,
+        splstakingProgramStakedSplTa: instance.splTa,
+        splstakingProgramLiqStakedSplTa: instance.liqSplTa,
+        splstakingProgramLiqAuwtTa: instance.liqAuwtTa,
+        splstakingProgramLiqAuwtTaAuthPda: instance.liqAuwtTaAuthPda,
+        tokenProgram: PublicKeys.TokenProgram,
+        associatedTokenProgram: PublicKeys.AssociatedTokenProgram,
+        systemProgram: PublicKeys.SystemProgram,
+        sysvarRent: PublicKeys.SysvarRent,
+      },
+    }).instruction();
+
+    return new SendTransactionParam()
+      .mergeTx(setComputeBudgetInstruction(400000))
+      .mergeTx(instruction, [tempAmtsolTaKeypair]);
+  }
+
   private findCoverStatePda(coverId: string) {
     return findPda(this.address.Cover.program, [this.address.Cover.state, 'cover_account_seed', coverId]);
   }
@@ -119,5 +173,15 @@ export class BlockchainClient {
     }
 
     return productAccounts;
+  }
+
+  private getStakingInstanceBySplTokenOrThrow(addressSpl: string) {
+    const instance = this.address.stakingInstances[addressSpl];
+
+    if (instance == null) {
+      throw new AmuletError(`No staking instance found for SPL token ${addressSpl}.`);
+    }
+
+    return instance;
   }
 }

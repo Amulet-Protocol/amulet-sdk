@@ -5,6 +5,7 @@ import type {
   CreateTransactionResult,
   GetPremiumParam,
   GetPremiumResult,
+  StakeSolForAuwtParam,
   Tokens,
 } from '../entity';
 
@@ -62,5 +63,9 @@ export class Amulet {
       ...param,
       coverId,
     });
+  }
+
+  public stakeSolForAuwt(param: StakeSolForAuwtParam): Promise<CreateTransactionResult> {
+    return this.blockchainClient.stakeSolAuwt(param);
   }
 }

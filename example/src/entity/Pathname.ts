@@ -1,3 +1,4 @@
 export const Pathname = {
-  BuyCover: 'buy-cover',
+  BuyCover: '/buy-cover',
+  StakeSolForAuwt: '/stake-sol-for-auwt',
 };
