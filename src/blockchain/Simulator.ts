@@ -1,11 +1,10 @@
-import type { Signer, Transaction } from '@solana/web3.js';
+import type { PublicKey, Signer, Transaction } from '@solana/web3.js';
 import type { BackendClient } from '../backend';
 import type { GetPremiumParam, SimulationResult } from '../entity';
 import type { BlockchainClient } from './BlockchainClient';
 import type { GetPremiumSimulationData as GetPremiumSimulationData } from './SimulatorType';
 
 import { BN } from '@project-serum/anchor';
-import { PublicKey } from '@solana/web3.js';
 import { AmuletError, InsufficientCapacityError } from '../entity';
 import { containsIgnoreCase } from '../util';
 
@@ -70,7 +69,6 @@ export class Simulator {
     }
 
     return {
-      premiumToken: new PublicKey(data.currency),
       premium: new BN(data.amount),
     };
   }

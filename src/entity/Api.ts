@@ -17,7 +17,6 @@ export type GetPremiumParam = {
 };
 
 export type GetPremiumResult = {
-  premiumToken: PublicKey;
   premium: BN;
 };
 

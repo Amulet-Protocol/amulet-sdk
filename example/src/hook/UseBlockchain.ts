@@ -1,6 +1,6 @@
 import type { Signer, Transaction } from '@solana/web3.js';
 
-import { AnchorProvider } from '@amulet/sdk';
+import { createProvider } from '@amulet/sdk';
 import { useAnchorWallet, useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { useCallback, useMemo } from 'react';
 
@@ -10,11 +10,7 @@ export function useBlockchain() {
   const anchor = useAnchorWallet();
 
   const provider = useMemo(() => {
-    if (anchor == null) {
-      return null;
-    }
-
-    return new AnchorProvider(connection, anchor, {});
+    return (anchor == null) ? null : createProvider(connection, anchor);
   }, [connection, anchor]);
 
   // Adapted from https://github.com/solana-labs/wallet-adapter/blob/master/APP.md page.
