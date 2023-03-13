@@ -10,7 +10,8 @@ export type GetPremiumParam = {
   provider: Provider;
   wallet: PublicKey;
   productId: number;
-  amount: BN;
+  coverToken: PublicKey;
+  coverAmount: BN;
   days: number;
   nftMetadataAddress?: PublicKey;
 };
@@ -25,7 +26,8 @@ export type BuyCoverParam = {
   owner: PublicKey;
   referrer: PublicKey;
   productId: number;
-  amount: BN;
+  coverToken: PublicKey;
+  coverAmount: BN;
   days: number;
   nftMint?: PublicKey;
   nftMetadataAddress?: PublicKey;

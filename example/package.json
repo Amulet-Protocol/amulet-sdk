@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
     "lint": "npm-run-all lint-ts lint-style",
     "lint-ts": "eslint --ext .ts,.tsx ./src",
     "lint-style": "stylelint \"**/*.scss\""
@@ -14,6 +14,7 @@
     "@amulet/sdk": "file:../amulet-sdk-1.0.0.tgz",
     "@solana/wallet-adapter-base": "^0.9.22",
     "@solana/wallet-adapter-react": "^0.15.30",
+    "@solana/wallet-adapter-react-ui": "^0.9.29",
     "@solana/wallet-adapter-wallets": "^0.19.15",
     "@solana/web3.js": "^1.73.3",
     "@types/node": "^18.14.6",
@@ -35,7 +36,9 @@
     "eslint-plugin-json-format": "^2.0.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "node-polyfill-webpack-plugin": "^2.0.1",
     "npm-run-all": "^4.1.5",
+    "react-app-rewired": "^2.2.1",
     "stylelint": "^15.2.0",
     "stylelint-config-standard-scss": "^7.0.1"
   },

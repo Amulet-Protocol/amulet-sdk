@@ -21,7 +21,7 @@ export class BlockchainClient {
   }
 
   public async premiumGet(param: GetPremiumParam) {
-    const { provider, productId, amount, days, nftMetadataAddress } = param;
+    const { provider, productId, coverToken, coverAmount, days, nftMetadataAddress } = param;
 
     const program = this.programManager.getQuotationProgram(provider);
 
@@ -33,8 +33,8 @@ export class BlockchainClient {
       param: {
         productId: new BN(productId),
         coverDurationInDays: new BN(days),
-        coverCurrency: amount.token.publicKey,
-        coverAmount: amount.toBN(),
+        coverCurrency: coverToken,
+        coverAmount: coverAmount,
       },
       accounts: {
         individualPoolState: accounts.poolStatePda,
@@ -55,7 +55,8 @@ export class BlockchainClient {
     coverId: string;
   }) {
     const {
-      provider, owner, referrer, productId, coverId, amount, days, nftMint, nftMetadataAddress,
+      provider, owner, referrer, productId, coverId, coverToken, coverAmount, days, nftMint,
+      nftMetadataAddress,
     } = param;
 
     const program = this.programManager.getUnderwritingProgram(provider);
@@ -71,8 +72,8 @@ export class BlockchainClient {
         coverId: new BN(coverId),
         coverProductId: new BN(productId),
         coverDurationInDays: new BN(days),
-        coverCurrency: amount.token.publicKey,
-        coverAmount: amount.toBN(),
+        coverCurrency: coverToken,
+        coverAmount: coverAmount,
         coverOwner: owner,
         coverReferrer: referrer,
       },

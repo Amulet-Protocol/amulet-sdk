@@ -6,3 +6,4 @@ export * from './Mode';
 export * from './Product';
 export * from './SendTransactionParam';
 export * from './Simulation';
+export * from './Token';

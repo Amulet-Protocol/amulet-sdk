@@ -1,4 +1,5 @@
 const path = require('path');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -13,6 +14,14 @@ module.exports = {
     clean: true, // Clean the output directory before emit.
   },
   devtool: 'inline-source-map',
+  plugins: [
+    // Polyfill Node.js modules.
+    new NodePolyfillPlugin({
+      includeAliases: [
+        'Buffer',
+      ],
+    }),
+  ],
   module: {
     rules: [{
       test: /\.tsx?$/,
