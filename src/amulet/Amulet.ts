@@ -11,7 +11,7 @@ import type {
 
 import { PublicKey } from '@solana/web3.js';
 import { BackendClient } from '../backend';
-import { BlockchainClient, BlockchainReader, Simulator } from '../blockchain';
+import { BlockchainClient, BlockchainReader, ErrorParser, Simulator } from '../blockchain';
 import { ConfigDevnet, ConfigMainnet } from '../config';
 import { Mode } from '../entity';
 
@@ -23,6 +23,7 @@ export type AmuletConfig = {
 export class Amulet {
   public mode: Mode;
   public tokens: Tokens;
+  public errorParser: ErrorParser;
 
   private config: Config;
   private backendClient: BackendClient;
@@ -32,6 +33,7 @@ export class Amulet {
 
   public constructor(option: AmuletConfig) {
     this.mode = option.mode;
+    this.errorParser = new ErrorParser();
 
     this.config = (this.mode === Mode.Mainnet) ? ConfigMainnet : ConfigDevnet;
 
