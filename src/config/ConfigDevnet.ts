@@ -7,6 +7,6 @@ export const ConfigDevnet: Config = {
   address: extractAddress(addressRaw),
   backend: {
     url: 'https://amd-fa-api-info-dev-1.azurewebsites.net',
-    code: 'Xj24t0MPl3RIvwoS47nhRGHx8MI64wMzP90xcNlOQc3IAzFuL5b4Hg==',
+    code: '7L-qfu_9F2Rtu05-BAjkelNIIJ9zex_TsRhXDldSV8FCAzFub_4Aww==',
   },
 };

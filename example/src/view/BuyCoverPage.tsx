@@ -1,5 +1,5 @@
 import { BN, ProductId } from '@amulet/sdk';
-import { useCallback, useMemo, useState } from 'react';
+import { Fragment, useCallback, useMemo, useState } from 'react';
 import { useAmulet, useBlockchain } from '../hook';
 
 export default function BuyCoverPage() {
@@ -40,10 +40,7 @@ export default function BuyCoverPage() {
 
     try {
       const result = await amulet.getPremium({
-        provider,
-        wallet: publicKey,
         productId,
-        coverToken: amulet.tokens.auwt.publicKey,
         coverAmount,
         days,
       });
@@ -97,7 +94,7 @@ export default function BuyCoverPage() {
       <p>
         {
           Object.entries(ProductId).map((([name, id]) => (
-            <div key={id}>{ id } { name }</div>
+            <Fragment key={id}>{ id } { name }<br /></Fragment>
           )))
         }
       </p>

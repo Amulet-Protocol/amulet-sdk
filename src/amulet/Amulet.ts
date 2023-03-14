@@ -11,7 +11,7 @@ import type {
 
 import { PublicKey } from '@solana/web3.js';
 import { BackendClient } from '../backend';
-import { BlockchainClient, BlockchainReader, ErrorParser, Simulator } from '../blockchain';
+import { BlockchainClient, BlockchainReader, ErrorParser } from '../blockchain';
 import { ConfigDevnet, ConfigMainnet } from '../config';
 import { Mode } from '../entity';
 
@@ -28,7 +28,6 @@ export class Amulet {
   private config: Config;
   private backendClient: BackendClient;
   private blockchainClient: BlockchainClient;
-  private simulator: Simulator;
   private blockchainReader: BlockchainReader;
 
   public constructor(option: AmuletConfig) {
@@ -40,7 +39,6 @@ export class Amulet {
     this.blockchainReader = new BlockchainReader(option.connection, this.config.address);
     this.blockchainClient = new BlockchainClient(this.config.address);
     this.backendClient = new BackendClient(this.config.backend);
-    this.simulator = new Simulator(this.backendClient, this.blockchainClient);
 
     this.tokens = {
       sol: {
@@ -53,7 +51,7 @@ export class Amulet {
   }
 
   public getPremium(param: GetPremiumParam): Promise<GetPremiumResult> {
-    return this.simulator.premiumGet(param);
+    return this.backendClient.getPremium(param);
   }
 
   public async buyCover(param: BuyCoverParam): Promise<CreateTransactionResult> {

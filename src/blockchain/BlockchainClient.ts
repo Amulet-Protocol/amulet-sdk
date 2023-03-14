@@ -1,7 +1,6 @@
 import type {
   AddressConfig,
   BuyCoverParam,
-  GetPremiumParam,
   StakeSolForAuwtParam,
 } from '../entity';
 
@@ -19,37 +18,6 @@ export class BlockchainClient {
   public constructor(address: AddressConfig) {
     this.address = address;
     this.programManager = new ProgramManager(this.address);
-  }
-
-  public async premiumGet(param: GetPremiumParam): Promise<SendTransactionParam> {
-    const { provider, productId, coverToken, coverAmount, days, nftMetadataAddress } = param;
-
-    const program = this.programManager.getQuotationProgram(provider);
-
-    const accounts = this.getProductAccountsOrThrow(productId);
-
-    const nftMetadataState = nftMetadataAddress ?? PublicKey.default;
-
-    const instruction = await program.getPremium({
-      param: {
-        productId: new BN(productId),
-        coverDurationInDays: new BN(days),
-        coverCurrency: coverToken,
-        coverAmount: coverAmount,
-      },
-      accounts: {
-        individualPoolState: accounts.poolStatePda,
-        productState: accounts.productStatePda,
-        quotationState: accounts.quotationStatePda,
-        quotationResultState: this.address.Quotation.result,
-        programMetadataState: this.address.Quotation.state,
-        poolMetadataState: this.address.Pool.state,
-        auwtState: this.address.Auwt.state,
-        nftMetadataState: nftMetadataState,
-      },
-    }).instruction();
-
-    return new SendTransactionParam(instruction);
   }
 
   public async coverBuy(param: BuyCoverParam & {

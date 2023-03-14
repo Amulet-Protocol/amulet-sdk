@@ -4,4 +4,3 @@ export * from './ErrorParser';
 export * from './Idl';
 export * from './ProgramManager';
 export * from './PublicKeys';
-export * from './Simulator';

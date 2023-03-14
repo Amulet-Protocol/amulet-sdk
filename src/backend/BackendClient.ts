@@ -1,6 +1,7 @@
-import type { SimulationParam, SimulationResult } from '../entity';
-import type { SimulateData } from './BackendClientType';
+import type { GetPremiumParam, SimulationParam, SimulationResult } from '../entity';
+import type { GetPremiumData, SimulateData } from './BackendClientType';
 
+import { BN } from '@project-serum/anchor';
 import { HttpClient } from '../http';
 
 export type BackendClientConfig = {
@@ -27,6 +28,21 @@ export class BackendClient {
 
     return {
       logs: data.logs ?? data.simulationResponse?.logs ?? [],
+    };
+  }
+
+  public async getPremium(param: GetPremiumParam) {
+    const body = {
+      productId: param.productId,
+      coverDurationInDays: param.days,
+      coverAmount: param.coverAmount.toNumber(),
+      nftMint: param.nftMint?.toString(),
+    };
+
+    const data = await this.client.post<GetPremiumData, typeof body>('/quotation', body);
+
+    return {
+      premium: new BN(data.premium_amount),
     };
   }
 }

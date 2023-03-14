@@ -7,13 +7,10 @@ export type CreateTransactionResult = {
 };
 
 export type GetPremiumParam = {
-  provider: Provider;
-  wallet: PublicKey;
   productId: number;
-  coverToken: PublicKey;
   coverAmount: BN;
   days: number;
-  nftMetadataAddress?: PublicKey;
+  nftMint?: PublicKey;
 };
 
 export type GetPremiumResult = {
