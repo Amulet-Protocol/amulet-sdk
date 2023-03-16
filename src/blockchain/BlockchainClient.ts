@@ -1,3 +1,4 @@
+import type { Connection } from '@solana/web3.js';
 import type {
   AddressConfig,
   BuyCoverParam,
@@ -15,20 +16,19 @@ export class BlockchainClient {
   private readonly address: AddressConfig;
   private readonly programManager: ProgramManager;
 
-  public constructor(address: AddressConfig) {
+  public constructor(connection: Connection, address: AddressConfig) {
     this.address = address;
-    this.programManager = new ProgramManager(this.address);
+    this.programManager = new ProgramManager(connection, address);
   }
 
   public async coverBuy(param: BuyCoverParam & {
     coverId: string;
   }): Promise<SendTransactionParam> {
     const {
-      provider, owner, referrer, productId, coverId, coverToken, coverAmount, days, nftMint,
-      nftMetadataAddress,
+      owner, referrer, productId, coverId, coverToken, coverAmount, days, nftMint, nftMetadataAddress,
     } = param;
 
-    const program = this.programManager.getUnderwritingProgram(provider);
+    const program = this.programManager.getUnderwritingProgram();
 
     const accounts = this.getProductAccountsOrThrow(productId);
 
@@ -77,9 +77,9 @@ export class BlockchainClient {
   }
 
   public async stakeSolAuwt(param: StakeSolForAuwtParam): Promise<SendTransactionParam> {
-    const { provider, staker, stakeAmount } = param;
+    const { staker, stakeAmount } = param;
 
-    const program = this.programManager.getSplStakingProgram(provider);
+    const program = this.programManager.getSplStakingProgram();
 
     const instance = this.getStakingInstanceBySplTokenOrThrow(this.address.amtsol.mint.toString());
 

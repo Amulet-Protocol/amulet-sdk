@@ -4,7 +4,6 @@ export * from './Api';
 export * from './Error';
 export * from './Mode';
 export * from './Product';
-export * from './Provider';
 export * from './SendTransactionParam';
 export * from './Simulation';
 export * from './Token';

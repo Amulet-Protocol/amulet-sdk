@@ -4,7 +4,7 @@ import { useAmulet, useBlockchain } from '../hook';
 
 export default function BuyCoverPage() {
   const { amulet } = useAmulet();
-  const { publicKey, provider, sendAndConfirmTransaction } = useBlockchain();
+  const { publicKey, sendAndConfirmTransaction } = useBlockchain();
 
   const [loading, setLoading] = useState(false);
   const [signature, setSignature] = useState('');
@@ -32,7 +32,7 @@ export default function BuyCoverPage() {
     setSignature('');
     setError(null);
 
-    if (publicKey == null || provider == null) {
+    if (publicKey == null) {
       return;
     }
 
@@ -51,13 +51,13 @@ export default function BuyCoverPage() {
     }
 
     setLoading(false);
-  }, [amulet, publicKey, provider, productId, coverAmount, days]);
+  }, [amulet, publicKey, productId, coverAmount, days]);
 
   const handleBuyCover = useCallback(async () => {
     setSignature('');
     setError(null);
 
-    if (publicKey == null || provider == null) {
+    if (publicKey == null) {
       return;
     }
 
@@ -65,7 +65,6 @@ export default function BuyCoverPage() {
 
     try {
       const { transaction, signers } = await amulet.buyCover({
-        provider,
         owner: publicKey,
         referrer: publicKey,
         productId,
@@ -82,7 +81,7 @@ export default function BuyCoverPage() {
     }
 
     setLoading(false);
-  }, [amulet, publicKey, provider, sendAndConfirmTransaction, productId, coverAmount, days]);
+  }, [amulet, publicKey, sendAndConfirmTransaction, productId, coverAmount, days]);
 
   return (
     <div>

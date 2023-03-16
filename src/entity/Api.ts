@@ -1,4 +1,4 @@
-import type { BN, Provider } from '@project-serum/anchor';
+import type { BN } from '@project-serum/anchor';
 import type { PublicKey, Signer, Transaction } from '@solana/web3.js';
 
 export type CreateTransactionResult = {
@@ -18,7 +18,6 @@ export type GetPremiumResult = {
 };
 
 export type BuyCoverParam = {
-  provider: Provider;
   owner: PublicKey;
   referrer: PublicKey;
   productId: number;
@@ -30,7 +29,6 @@ export type BuyCoverParam = {
 };
 
 export type StakeSolForAuwtParam = {
-  provider: Provider;
   staker: PublicKey;
   stakeAmount: BN;
 };

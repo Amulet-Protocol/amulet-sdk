@@ -1,4 +1,4 @@
-import type { Provider } from '@project-serum/anchor';
+import type { Connection } from '@solana/web3.js';
 import type { AddressConfig } from '../entity';
 
 import {
@@ -11,29 +11,31 @@ import {
 import { AppIdl } from './Idl';
 
 export class ProgramManager {
+  public readonly connection: Connection;
   public readonly address: AddressConfig;
 
-  public constructor(address: AddressConfig) {
+  public constructor(connection: Connection, address: AddressConfig) {
+    this.connection = connection;
     this.address = address;
   }
 
-  public getSolStakingProgram(provider: Provider) {
-    return new AmuletSolStakingProgram(AppIdl.SolStaking, this.address.SolStaking.program, provider);
+  public getSolStakingProgram() {
+    return new AmuletSolStakingProgram(AppIdl.SolStaking, this.address.SolStaking.program, { connection: this.connection });
   }
 
-  public getSplStakingProgram(provider: Provider) {
-    return new SplSolStakingProgram(AppIdl.SplStaking, this.address.SplStaking.program, provider);
+  public getSplStakingProgram() {
+    return new SplSolStakingProgram(AppIdl.SplStaking, this.address.SplStaking.program, { connection: this.connection });
   }
 
-  public getPoolProgram(provider: Provider) {
-    return new PoolProgram(AppIdl.Pool, this.address.Pool.program, provider);
+  public getPoolProgram() {
+    return new PoolProgram(AppIdl.Pool, this.address.Pool.program, { connection: this.connection });
   }
 
-  public getQuotationProgram(provider: Provider) {
-    return new QuotationProgram(AppIdl.Quotation, this.address.Quotation.program, provider);
+  public getQuotationProgram() {
+    return new QuotationProgram(AppIdl.Quotation, this.address.Quotation.program, { connection: this.connection });
   }
 
-  public getUnderwritingProgram(provider: Provider) {
-    return new UnderwritingProgram(AppIdl.Underwriting, this.address.Underwrite.program, provider);
+  public getUnderwritingProgram() {
+    return new UnderwritingProgram(AppIdl.Underwriting, this.address.Underwrite.program, { connection: this.connection });
   }
 }

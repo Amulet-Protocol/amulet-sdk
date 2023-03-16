@@ -4,7 +4,7 @@ import { useAmulet, useBlockchain } from '../hook';
 
 export default function StakeSolForAuwtPage() {
   const { amulet } = useAmulet();
-  const { publicKey, provider, sendAndConfirmTransaction } = useBlockchain();
+  const { publicKey, sendAndConfirmTransaction } = useBlockchain();
 
   const [loading, setLoading] = useState(false);
   const [signature, setSignature] = useState('');
@@ -20,7 +20,7 @@ export default function StakeSolForAuwtPage() {
     setSignature('');
     setError(null);
 
-    if (publicKey == null || provider == null) {
+    if (publicKey == null) {
       return;
     }
 
@@ -28,7 +28,6 @@ export default function StakeSolForAuwtPage() {
 
     try {
       const { transaction, signers } = await amulet.stakeSolForAuwt({
-        provider,
         staker: publicKey,
         stakeAmount,
       });
@@ -41,7 +40,7 @@ export default function StakeSolForAuwtPage() {
     }
 
     setLoading(false);
-  }, [amulet, publicKey, provider, sendAndConfirmTransaction, stakeAmount]);
+  }, [amulet, publicKey, sendAndConfirmTransaction, stakeAmount]);
 
   return (
     <div>

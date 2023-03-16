@@ -9,7 +9,6 @@ import type {
   Tokens,
 } from '../entity';
 
-import { PublicKey } from '@solana/web3.js';
 import { BackendClient } from '../backend';
 import { BlockchainClient, BlockchainReader, ErrorParser } from '../blockchain';
 import { ConfigDevnet, ConfigMainnet } from '../config';
@@ -22,6 +21,7 @@ export type AmuletConfig = {
 
 export class Amulet {
   public mode: Mode;
+  public connection: Connection;
   public tokens: Tokens;
   public errorParser: ErrorParser;
 
@@ -32,18 +32,16 @@ export class Amulet {
 
   public constructor(option: AmuletConfig) {
     this.mode = option.mode;
+    this.connection = option.connection;
     this.errorParser = new ErrorParser();
 
     this.config = (this.mode === Mode.Mainnet) ? ConfigMainnet : ConfigDevnet;
 
-    this.blockchainReader = new BlockchainReader(option.connection, this.config.address);
-    this.blockchainClient = new BlockchainClient(this.config.address);
+    this.blockchainReader = new BlockchainReader(this.connection, this.config.address);
+    this.blockchainClient = new BlockchainClient(this.connection, this.config.address);
     this.backendClient = new BackendClient(this.config.backend);
 
     this.tokens = {
-      sol: {
-        publicKey: new PublicKey('So11111111111111111111111111111111111111112'),
-      },
       auwt: {
         publicKey: this.config.address.auwt.mint,
       },
