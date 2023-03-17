@@ -4,7 +4,7 @@ const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 module.exports = {
   webpack: (config) => {
     config.plugins = (config.plugins || []).concat([
-		  new NodePolyfillPlugin({
+      new NodePolyfillPlugin({
         includeAliases: [
           'crypto',
           'stream',

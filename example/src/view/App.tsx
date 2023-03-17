@@ -5,7 +5,7 @@ import BuyCoverPage from './BuyCoverPage';
 import Nav from './Nav';
 import StakeSolForAuwtPage from './StakeSolForAuwtPage';
 
-import styles from './App.module.css';
+import styles from './App.module.scss';
 
 export function App() {
   return (
