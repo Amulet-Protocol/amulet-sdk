@@ -12,7 +12,8 @@ import type {
 import { BackendClient } from '../backend';
 import { BlockchainClient, BlockchainReader, ErrorParser } from '../blockchain';
 import { ConfigDevnet, ConfigMainnet } from '../config';
-import { Mode } from '../entity';
+import { AmuletError, Mode } from '../entity';
+import { validate } from '../util';
 
 export type AmuletConfig = {
   mode: Mode;
@@ -49,10 +50,16 @@ export class Amulet {
   }
 
   public getPremium(param: GetPremiumParam): Promise<GetPremiumResult> {
+    validate(!param.coverAmount.isZero() && !param.coverAmount.isNeg(), new AmuletError('coverAmount must be positive.'));
+    validate(Number.isInteger(param.days) && param.days > 0, new AmuletError('days must be a positive integer.'));
+
     return this.backendClient.getPremium(param);
   }
 
   public async buyCover(param: BuyCoverParam): Promise<CreateTransactionResult> {
+    validate(!param.coverAmount.isZero() && !param.coverAmount.isNeg(), new AmuletError('coverAmount must be positive.'));
+    validate(Number.isInteger(param.days) && param.days > 0, new AmuletError('days must be a positive integer.'));
+
     const info = await this.blockchainReader.getCoverAccountInfo();
 
     const coverId = (info.coverCount + 1).toString();
