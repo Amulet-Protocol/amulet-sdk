@@ -25,7 +25,7 @@ export class BlockchainClient {
     coverId: string;
   }): Promise<SendTransactionParam> {
     const {
-      owner, referrer, productId, coverId, coverToken, coverAmount, days, nftMint, nftMetadataAddress,
+      owner, referrer, productId, coverId, coverAmount, days, nftMint, nftMetadataAddress,
     } = param;
 
     const program = this.programManager.getUnderwritingProgram();
@@ -41,7 +41,7 @@ export class BlockchainClient {
         coverId: new BN(coverId),
         coverProductId: new BN(productId),
         coverDurationInDays: new BN(days),
-        coverCurrency: coverToken,
+        coverCurrency: this.address.auwt.mint,
         coverAmount: coverAmount,
         coverOwner: owner,
         coverReferrer: referrer,

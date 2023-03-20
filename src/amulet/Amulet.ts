@@ -50,14 +50,16 @@ export class Amulet {
   }
 
   public getPremium(param: GetPremiumParam): Promise<GetPremiumResult> {
-    validate(!param.coverAmount.isZero() && !param.coverAmount.isNeg(), new AmuletError('coverAmount must be positive.'));
+    validate(Number.isInteger(param.productId) && param.productId > 0, new AmuletError('productId must be a positive integer.'));
+    validate(!param.coverAmount.isZero() && !param.coverAmount.isNeg(), new AmuletError('coverAmount must be a positive BN.'));
     validate(Number.isInteger(param.days) && param.days > 0, new AmuletError('days must be a positive integer.'));
 
     return this.backendClient.getPremium(param);
   }
 
   public async buyCover(param: BuyCoverParam): Promise<CreateTransactionResult> {
-    validate(!param.coverAmount.isZero() && !param.coverAmount.isNeg(), new AmuletError('coverAmount must be positive.'));
+    validate(Number.isInteger(param.productId) && param.productId > 0, new AmuletError('productId must be a positive integer.'));
+    validate(!param.coverAmount.isZero() && !param.coverAmount.isNeg(), new AmuletError('coverAmount must be a positive BN.'));
     validate(Number.isInteger(param.days) && param.days > 0, new AmuletError('days must be a positive integer.'));
 
     const info = await this.blockchainReader.getCoverAccountInfo();
@@ -71,6 +73,8 @@ export class Amulet {
   }
 
   public stakeSolForAuwt(param: StakeSolForAuwtParam): Promise<CreateTransactionResult> {
+    validate(!param.stakeAmount.isZero() && !param.stakeAmount.isNeg(), new AmuletError('stakeAmount must be a positive BN.'));
+
     return this.blockchainClient.stakeSolAuwt(param);
   }
 }

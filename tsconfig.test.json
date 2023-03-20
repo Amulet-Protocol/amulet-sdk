@@ -1,0 +1,10 @@
+{
+  "include": [
+    "test"
+  ],
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  }
+}

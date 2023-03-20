@@ -21,7 +21,6 @@ export type BuyCoverParam = {
   owner: PublicKey;
   referrer: PublicKey;
   productId: number;
-  coverToken: PublicKey;
   coverAmount: BN;
   days: number;
   nftMint?: PublicKey;
