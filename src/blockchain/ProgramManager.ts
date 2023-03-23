@@ -2,7 +2,6 @@ import type { Connection } from '@solana/web3.js';
 import type { AddressConfig } from '../entity';
 
 import {
-  AmuletSolStakingProgram,
   PoolProgram,
   QuotationProgram,
   SplSolStakingProgram,
@@ -17,10 +16,6 @@ export class ProgramManager {
   public constructor(connection: Connection, address: AddressConfig) {
     this.connection = connection;
     this.address = address;
-  }
-
-  public getSolStakingProgram() {
-    return new AmuletSolStakingProgram(AppIdl.SolStaking, this.address.SolStaking.program, { connection: this.connection });
   }
 
   public getSplStakingProgram() {
