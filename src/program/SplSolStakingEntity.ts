@@ -2,133 +2,11 @@
 import type { BN } from '@project-serum/anchor';
 import type { PublicKey } from '@solana/web3.js';
 
-export type SplTokenInvestmentState = {
-  readonly programStakingInstanceStateKey: PublicKey;
-  readonly splTokenInvestmentStatePdaBump: number;
-  readonly splTokenInvestmentOwnerKey: PublicKey;
-  readonly splTokenInvestmentAmount: BN;
-};
-export type StakingInstanceState = {
-  readonly stakingInstanceStateBump: number;
-  readonly minDeposit: BN;
-  readonly minWithdraw: BN;
-  readonly summaryIndex: BN;
-  readonly programStakedSplTaAuthPdaKey: PublicKey;
-  readonly programStakedSplTaAuthPdaBump: number;
-  readonly programStakedSplTaKey: PublicKey;
-  readonly programStakedSplMintKey: PublicKey;
-  readonly ticketUnstakeWaitingEpoch: BN;
-  readonly programLiqStakedSplTaAuthPdaKey: PublicKey;
-  readonly programLiqStakedSplTaAuthPdaBump: number;
-  readonly programLiqStakedSplTaKey: PublicKey;
-  readonly programLiqStakedSplVirtualAmount: BN;
-  readonly programLiqAuwtTaAuthPdaKey: PublicKey;
-  readonly programLiqAuwtTaAuthPdaBump: number;
-  readonly programLiqAuwtTaKey: PublicKey;
-  readonly programLiqAuwtMintKey: PublicKey;
-  readonly programLiqAuwtVirtualAmount: BN;
-  readonly lpMintAuthPdaKey: PublicKey;
-  readonly lpMintAuthPdaBump: number;
-  readonly lpMintKey: PublicKey;
-  readonly lpVirtualSupply: BN;
-  readonly programLiqFeeCeilingSpl: BN;
-  readonly programLiqFeeFloorSpl: BN;
-  readonly programLiqFeeBasepoint: number;
-  readonly programLiqFeeMax: number;
-  readonly programLiqFeeMin: number;
-  readonly pcuvStakedSplTaKey: PublicKey;
-  readonly pcuvLiqFeeShare: number;
-  readonly pcuvLiqFeeBasepoint: number;
-  readonly programIsPaused: boolean;
-};
-export type SummaryStateV1 = {
-  readonly programAdminAuthKey: PublicKey;
-  readonly operatorAuthKey: PublicKey;
-  readonly programStakedSplMintKeyArray: PublicKey[];
-  readonly programStakedSplVirtualAmountArray: BN[];
-  readonly programStakedSplInvestmentAmountArray: BN[];
-  readonly programStakedSplTicketUnstakePendingAmount: BN[];
-  readonly tokenCount: BN;
-  readonly programInvestmentSplTokenOwnerList: PublicKey[];
-  readonly programInvestmentSplTokenMaxPctg: BN;
-  readonly splSolStakingCallerPdaKey: PublicKey;
-  readonly splSolStakingCallerPdaBump: BN;
-  readonly splSolStakingCallerAuwtTokenProgIndex: BN;
-  readonly splSolStakingCallerPoolProgIndex: BN;
-};
 export type TicketState = {
   readonly programStakingInstanceStateKey: PublicKey;
   readonly beneficiary: PublicKey;
   readonly splTokenAmount: BN;
   readonly createdEpoch: BN;
-};
-export type InitializeSummaryStateV1Param = {
-  readonly splSolStakingCallerPdaBump: number;
-  readonly splSolStakingCallerAuwtTokenProgIndex: BN;
-  readonly splSolStakingCallerPoolProgIndex: BN;
-  readonly programInvestmentSplTokenMaxPctg: BN;
-};
-export type InitializeSummaryStateV1Accounts = {
-  readonly initializeSummaryStateV1Auth: PublicKey | string;
-  readonly programSummaryState: PublicKey | string;
-  readonly programAdminAuth: PublicKey | string;
-  readonly operatorAuth: PublicKey | string;
-  readonly splSolStakingCallerPda: PublicKey | string;
-};
-export type AdminUpdateAdminAuthInfoAccounts = {
-  readonly programSummaryState: PublicKey | string;
-  readonly newProgramAdminAuth: PublicKey | string;
-  readonly programAdminAuth: PublicKey | string;
-  readonly sysvarRent: PublicKey | string;
-};
-export type AdminUpdateSummaryStateInfoParam = {
-  readonly splSolStakingCallerAuwtTokenProgIndex: BN;
-  readonly splSolStakingCallerPoolProgIndex: BN;
-  readonly programInvestmentSplTokenMaxPctg: BN;
-};
-export type AdminUpdateSummaryStateInfoAccounts = {
-  readonly programSummaryState: PublicKey | string;
-  readonly programAdminAuth: PublicKey | string;
-};
-export type AdminUpdateInvestmentSplTokenOwnerInfoParam = {
-  readonly splTokenOwnerIndex: BN;
-  readonly splTokenOwnerKey: PublicKey;
-};
-export type AdminUpdateInvestmentSplTokenOwnerInfoAccounts = {
-  readonly programSummaryState: PublicKey | string;
-  readonly programAdminAuth: PublicKey | string;
-};
-export type AdminAddStakingInstanceParam = {
-  readonly programStakedSplTaAuthPdaBump: number;
-};
-export type AdminAddStakingInstanceAccounts = {
-  readonly programSummaryState: PublicKey | string;
-  readonly programAdminAuth: PublicKey | string;
-  readonly programStakingInstanceState: PublicKey | string;
-  readonly programStakedSplTaAuthPda: PublicKey | string;
-  readonly programStakedSplTa: PublicKey | string;
-  readonly programStakedSplMint: PublicKey | string;
-  readonly systemProgram: PublicKey | string;
-  readonly sysvarRent: PublicKey | string;
-};
-export type AdminAttachLiqToStakingInstanceParam = {
-  readonly programLiqStakedSplTaAuthPdaBump: number;
-  readonly programLiqAuwtTaAuthPdaBump: number;
-  readonly lpMintAuthPdaBump: number;
-};
-export type AdminAttachLiqToStakingInstanceAccounts = {
-  readonly programSummaryState: PublicKey | string;
-  readonly programStakingInstanceState: PublicKey | string;
-  readonly programAdminAuth: PublicKey | string;
-  readonly programLiqStakedSplTaAuthPda: PublicKey | string;
-  readonly programLiqStakedSplTa: PublicKey | string;
-  readonly pcuvStakedSplTa: PublicKey | string;
-  readonly programLiqAuwtTaAuthPda: PublicKey | string;
-  readonly programLiqAuwtTa: PublicKey | string;
-  readonly auwtMint: PublicKey | string;
-  readonly lpMintAuthPda: PublicKey | string;
-  readonly lpMint: PublicKey | string;
-  readonly sysvarRent: PublicKey | string;
 };
 export type AddLiquidityParam = {
   readonly splTokenAmount: BN;
@@ -146,14 +24,6 @@ export type AddLiquidityAccounts = {
   readonly lpTokenTransferTo: PublicKey | string;
   readonly sysvarRent: PublicKey | string;
   readonly tokenProgram: PublicKey | string;
-};
-export type UpdateAuwtPriceAccounts = {
-  readonly auwtState: PublicKey | string;
-  readonly auwtProgram: PublicKey | string;
-  readonly exchangeRateGroupState: PublicKey | string;
-  readonly programSummaryState: PublicKey | string;
-  readonly splSolStakingCallerPda: PublicKey | string;
-  readonly sysvarClock: PublicKey | string;
 };
 export type RemoveLiquidityParam = {
   readonly lpTokenAmount: BN;
@@ -190,49 +60,6 @@ export type LiqUnstakeSplAccounts = {
   readonly transferAuwtFromAuth: PublicKey | string;
   readonly tokenProgram: PublicKey | string;
   readonly sysvarRent: PublicKey | string;
-};
-export type AdminUpdateLiqUnstakeInfoParam = {
-  readonly pcuvLiqFeeShare: number;
-  readonly pcuvLiqFeeBasepoint: number;
-  readonly programLiqFeeCeilingSpl: BN;
-  readonly programLiqFeeFloorSpl: BN;
-  readonly programLiqFeeBasepoint: number;
-  readonly programLiqFeeMax: number;
-  readonly programLiqFeeMin: number;
-};
-export type AdminUpdateLiqUnstakeInfoAccounts = {
-  readonly programSummaryState: PublicKey | string;
-  readonly programStakingInstanceState: PublicKey | string;
-  readonly pcuvStakedSplTa: PublicKey | string;
-  readonly programAdminAuth: PublicKey | string;
-  readonly sysvarRent: PublicKey | string;
-};
-export type AdminUpdateTicketUnstakeInfoParam = {
-  readonly ticketUnstakeWaitingEpoch: BN;
-};
-export type AdminUpdateTicketUnstakeInfoAccounts = {
-  readonly programSummaryState: PublicKey | string;
-  readonly programStakingInstanceState: PublicKey | string;
-  readonly programAdminAuth: PublicKey | string;
-};
-export type AdminUpdateProgramPauseInfoParam = {
-  readonly programIsPaused: boolean;
-};
-export type AdminUpdateProgramPauseInfoAccounts = {
-  readonly programSummaryState: PublicKey | string;
-  readonly programStakingInstanceState: PublicKey | string;
-  readonly programAdminAuth: PublicKey | string;
-};
-export type AdminUpdateOperatorAuthAccounts = {
-  readonly programSummaryState: PublicKey | string;
-  readonly newOperatorAuth: PublicKey | string;
-  readonly programAdminAuth: PublicKey | string;
-  readonly sysvarRent: PublicKey | string;
-};
-export type OperatorUpdateProgramPauseInfoAccounts = {
-  readonly programSummaryState: PublicKey | string;
-  readonly programStakingInstanceState: PublicKey | string;
-  readonly operatorAuth: PublicKey | string;
 };
 export type StakeSplGetAuwtParam = {
   readonly splTokenAmount: BN;
@@ -317,56 +144,4 @@ export type ClaimSplTokenFromTicketAccounts = {
   readonly sysvarClock: PublicKey | string;
   readonly sysvarRent: PublicKey | string;
   readonly tokenProgram: PublicKey | string;
-};
-export type AllocateSplTokenInvestmentParam = {
-  readonly splTokenOwnerIndex: BN;
-  readonly investmentAmount: BN;
-};
-export type AllocateSplTokenInvestmentAccounts = {
-  readonly programSummaryState: PublicKey | string;
-  readonly programStakingInstanceState: PublicKey | string;
-  readonly programStakedSplTa: PublicKey | string;
-  readonly programStakedSplTaAuthPda: PublicKey | string;
-  readonly programAdminAuth: PublicKey | string;
-  readonly splTokenInvestmentState: PublicKey | string;
-  readonly splTokenInvestmentAccount: PublicKey | string;
-  readonly sysvarRent: PublicKey | string;
-  readonly systemProgram: PublicKey | string;
-  readonly tokenProgram: PublicKey | string;
-};
-export type ReturnSplTokenInvestmentParam = {
-  readonly returnedInvestmentAmount: BN;
-};
-export type ReturnSplTokenInvestmentAccounts = {
-  readonly programSummaryState: PublicKey | string;
-  readonly programStakingInstanceState: PublicKey | string;
-  readonly programStakedSplTa: PublicKey | string;
-  readonly splTokenOwner: PublicKey | string;
-  readonly splTokenInvestmentState: PublicKey | string;
-  readonly splTokenInvestmentAccount: PublicKey | string;
-  readonly sysvarRent: PublicKey | string;
-  readonly tokenProgram: PublicKey | string;
-};
-export type DistributeProfitOnSplTokenInvestmentParam = {
-  readonly profitAmount: BN;
-};
-export type DistributeProfitOnSplTokenInvestmentAccounts = {
-  readonly programSummaryState: PublicKey | string;
-  readonly programStakingInstanceState: PublicKey | string;
-  readonly programStakedSplTa: PublicKey | string;
-  readonly splTokenOwner: PublicKey | string;
-  readonly splTokenInvestmentState: PublicKey | string;
-  readonly splTokenProfitAccount: PublicKey | string;
-  readonly sysvarRent: PublicKey | string;
-  readonly tokenProgram: PublicKey | string;
-};
-export type DeclareLossOnSplTokenInvestmentParam = {
-  readonly lossAmount: BN;
-};
-export type DeclareLossOnSplTokenInvestmentAccounts = {
-  readonly programSummaryState: PublicKey | string;
-  readonly programStakingInstanceState: PublicKey | string;
-  readonly programStakedSplTa: PublicKey | string;
-  readonly splTokenOwner: PublicKey | string;
-  readonly splTokenInvestmentState: PublicKey | string;
 };

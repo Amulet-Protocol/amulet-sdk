@@ -6,21 +6,9 @@ import type * as entity from './QuotationEntity';
 import { Program } from '@project-serum/anchor';
 
 type QuotationAccountClients = {
-  readonly quotationMetadataState: AccountClient;
   readonly quotationResultState: AccountClient;
-  readonly quotationState: AccountClient;
 };
 type QuotationMethodBuilders = {
-  readonly initializeMetadataState: MethodsNamespace[keyof MethodsNamespace];
-  readonly adminUpdateAdminAuthInfo: MethodsNamespace[keyof MethodsNamespace];
-  readonly adminUpdateMetadataInfo: MethodsNamespace[keyof MethodsNamespace];
-  readonly adminAddNftCollection: MethodsNamespace[keyof MethodsNamespace];
-  readonly adminRemoveNftCollection: MethodsNamespace[keyof MethodsNamespace];
-  readonly adminEnlargeAccount: MethodsNamespace[keyof MethodsNamespace];
-  readonly addQuotationState: MethodsNamespace[keyof MethodsNamespace];
-  readonly updateQuotationState: MethodsNamespace[keyof MethodsNamespace];
-  readonly createQuotationResultState: MethodsNamespace[keyof MethodsNamespace];
-  readonly closeQuotationResultState: MethodsNamespace[keyof MethodsNamespace];
   readonly getPremium: MethodsNamespace[keyof MethodsNamespace];
 };
 
@@ -45,86 +33,6 @@ export class QuotationProgram {
 
   public get methods() {
     return this.program.methods as QuotationMethodBuilders;
-  }
-
-  public initializeMetadataState(option: InstructionOption<void, entity.InitializeMetadataStateAccounts>) {
-    return this.methods.initializeMetadataState().accounts(option.accounts);
-  }
-
-  public adminUpdateAdminAuthInfo(option: InstructionOption<void, entity.AdminUpdateAdminAuthInfoAccounts>) {
-    return this.methods.adminUpdateAdminAuthInfo().accounts(option.accounts);
-  }
-
-  public adminUpdateMetadataInfo(option: InstructionOption<entity.AdminUpdateMetadataInfoParam, entity.AdminUpdateMetadataInfoAccounts>) {
-    return this.methods
-      .adminUpdateMetadataInfo(
-        option.param.riskMarginPctg,
-        option.param.expenseMarginPctg,
-        option.param.slippageFactorPctg,
-        option.param.defaultSettingStatus,
-        option.param.defaultLowSectionPctg,
-        option.param.defaultHighSectionPctg,
-        option.param.defaultLowSectionBaseUnitCostRatio,
-        option.param.defaultMiddleSectionBaseUnitCostRatio,
-        option.param.defaultHighSectionBaseUnitCostRatio,
-        option.param.defaultHighSectionCeilingUnitCostRatio,
-        option.param.overallSettingStatus,
-        option.param.overallIncreaseLowWatermarkPctg,
-        option.param.overallIncreaseLowWatermarkRatio,
-        option.param.overallIncreaseHighWatermarkPctg,
-        option.param.overallIncreaseHighWatermarkRatio,
-      )
-      .accounts(option.accounts);
-  }
-
-  public adminAddNftCollection(option: InstructionOption<entity.AdminAddNftCollectionParam, entity.AdminAddNftCollectionAccounts>) {
-    return this.methods.adminAddNftCollection(option.param.coverDiscountPctg).accounts(option.accounts);
-  }
-
-  public adminRemoveNftCollection(option: InstructionOption<entity.AdminRemoveNftCollectionParam, entity.AdminRemoveNftCollectionAccounts>) {
-    return this.methods.adminRemoveNftCollection(option.param.index).accounts(option.accounts);
-  }
-
-  public adminEnlargeAccount(option: InstructionOption<entity.AdminEnlargeAccountParam, entity.AdminEnlargeAccountAccounts>) {
-    return this.methods.adminEnlargeAccount(option.param.targetLength).accounts(option.accounts);
-  }
-
-  public addQuotationState(option: InstructionOption<entity.AddQuotationStateParam, entity.AddQuotationStateAccounts>) {
-    return this.methods
-      .addQuotationState(
-        option.param.productId,
-        option.param.productDynamicSettingStatus,
-        option.param.productDynamicLowSectionPctg,
-        option.param.productDynamicHighSectionPctg,
-        option.param.productDynamicLowSectionBaseUnitCost,
-        option.param.productDynamicMiddleSectionBaseUnitCost,
-        option.param.productDynamicHighSectionBaseUnitCost,
-        option.param.productDynamicHighSectionCeilingUnitCost,
-      )
-      .accounts(option.accounts);
-  }
-
-  public updateQuotationState(option: InstructionOption<entity.UpdateQuotationStateParam, entity.UpdateQuotationStateAccounts>) {
-    return this.methods
-      .updateQuotationState(
-        option.param.productId,
-        option.param.productDynamicSettingStatus,
-        option.param.productDynamicLowSectionPctg,
-        option.param.productDynamicHighSectionPctg,
-        option.param.productDynamicLowSectionBaseUnitCost,
-        option.param.productDynamicMiddleSectionBaseUnitCost,
-        option.param.productDynamicHighSectionBaseUnitCost,
-        option.param.productDynamicHighSectionCeilingUnitCost,
-      )
-      .accounts(option.accounts);
-  }
-
-  public createQuotationResultState(option: InstructionOption<void, entity.CreateQuotationResultStateAccounts>) {
-    return this.methods.createQuotationResultState().accounts(option.accounts);
-  }
-
-  public closeQuotationResultState(option: InstructionOption<void, entity.CloseQuotationResultStateAccounts>) {
-    return this.methods.closeQuotationResultState().accounts(option.accounts);
   }
 
   public getPremium(option: InstructionOption<entity.GetPremiumParam, entity.GetPremiumAccounts>) {
