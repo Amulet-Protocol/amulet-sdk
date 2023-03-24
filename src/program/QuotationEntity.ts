@@ -2,12 +2,6 @@
 import type { BN } from '@project-serum/anchor';
 import type { PublicKey } from '@solana/web3.js';
 
-export type QuotationResultState = {
-  readonly premiumCurrency: PublicKey;
-  readonly premiumAmount: BN;
-  readonly creatorKey: PublicKey;
-  readonly discountAmount: BN;
-};
 export type GetPremiumParam = {
   readonly productId: BN;
   readonly coverCurrency: PublicKey;

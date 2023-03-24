@@ -66,50 +66,7 @@
       ]
     }
   ],
-  "accounts": [
-    {
-      "name": "QuotationResultState",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "premiumCurrency",
-            "type": "publicKey"
-          },
-          {
-            "name": "premiumAmount",
-            "type": "u64"
-          },
-          {
-            "name": "creatorKey",
-            "type": "publicKey"
-          },
-          {
-            "name": "discountAmount",
-            "type": "u64"
-          }
-        ]
-      }
-    }
-  ],
-  "types": [
-    {
-      "name": "NFTCollection",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "tokenMint",
-            "type": "publicKey"
-          },
-          {
-            "name": "coverDiscountPctg",
-            "type": "u64"
-          }
-        ]
-      }
-    }
-  ],
+  "accounts": [],
   "errors": [
     {
       "code": 16000,

@@ -36,7 +36,9 @@ export default function StakeSolForAuwtPage() {
 
       setSignature(result);
     } catch (e) {
-      setError(e);
+      const err = amulet.errorParser.parseBuyCoverError(e);
+
+      setError(err ?? e);
     }
 
     setLoading(false);
