@@ -2,8 +2,8 @@ import type { BN } from '@project-serum/anchor';
 import type { PublicKey, Signer, Transaction } from '@solana/web3.js';
 
 export type CreateTransactionResult = {
-  readonly transaction: Transaction;
-  readonly signers: Signer[];
+  transaction: Transaction;
+  signers: Signer[];
 };
 
 export type GetPremiumParam = {
@@ -30,4 +30,18 @@ export type BuyCoverParam = {
 export type StakeSolForAuwtParam = {
   staker: PublicKey;
   stakeAmount: BN;
+};
+
+export type RedeemAuwtDelayedParam = {
+  staker: PublicKey;
+  redeemAmount: BN;
+};
+
+export type RedeemAuwtDelayedResult = CreateTransactionResult & {
+  ticketAccount: PublicKey;
+};
+
+export type WithdrawTicketAccountParam = {
+  staker: PublicKey;
+  ticketAccount: PublicKey;
 };

@@ -39,4 +39,11 @@ export class SendTransactionParam {
 
     return new SendTransactionParam(newTx, newSigners);
   }
+
+  public toObject() {
+    return {
+      transaction: this.transaction,
+      signers: this.signers,
+    };
+  }
 }

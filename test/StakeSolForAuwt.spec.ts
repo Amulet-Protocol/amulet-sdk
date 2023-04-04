@@ -1,19 +1,15 @@
 import type { StakeSolForAuwtParam } from '../src';
 
-import { clusterApiUrl, Connection, Keypair } from '@solana/web3.js';
+import { Keypair } from '@solana/web3.js';
 import { assert } from 'chai';
-import { Amulet, AmuletError, BN, Mode } from '../src';
+import { AmuletError, BN } from '../src';
+import { createAmulet } from './TestConfig';
 
 describe('stakeSolForAuwt', function() {
-  const amulet = new Amulet({
-    mode: Mode.Devnet,
-    connection: new Connection(clusterApiUrl('devnet')),
-  });
-
-  const keypair = Keypair.generate();
+  const amulet = createAmulet();
 
   const param: StakeSolForAuwtParam = {
-    staker: keypair.publicKey,
+    staker: Keypair.generate().publicKey,
     stakeAmount: new BN(1e9),
   };
 
@@ -32,7 +28,7 @@ describe('stakeSolForAuwt', function() {
     }
   });
 
-  it('coverAmount: stakeSolForAuwt BN', async function() {
+  it('coverAmount: negative BN', async function() {
     try {
       await amulet.stakeSolForAuwt({ ...param, stakeAmount: new BN(-1) });
     } catch (e: any) {

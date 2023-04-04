@@ -1,14 +1,12 @@
 import type { BuyCoverParam } from '../src';
 
-import { clusterApiUrl, Connection, Keypair } from '@solana/web3.js';
+import { Keypair } from '@solana/web3.js';
 import { assert } from 'chai';
-import { Amulet, AmuletError, BN, Mode, ProductId } from '../src';
+import { AmuletError, BN, ProductId } from '../src';
+import { createAmulet } from './TestConfig';
 
 describe('buyCover', function() {
-  const amulet = new Amulet({
-    mode: Mode.Devnet,
-    connection: new Connection(clusterApiUrl('devnet')),
-  });
+  const amulet = createAmulet();
 
   const keypair = Keypair.generate();
 

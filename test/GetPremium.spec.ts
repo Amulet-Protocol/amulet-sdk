@@ -1,14 +1,11 @@
 import type { GetPremiumParam } from '../src';
 
-import { clusterApiUrl, Connection } from '@solana/web3.js';
 import { assert } from 'chai';
-import { Amulet, AmuletError, BN, Mode, ProductId } from '../src';
+import { AmuletError, BN, ProductId } from '../src';
+import { createAmulet } from './TestConfig';
 
 describe('getPremium', function() {
-  const amulet = new Amulet({
-    mode: Mode.Devnet,
-    connection: new Connection(clusterApiUrl('devnet')),
-  });
+  const amulet = createAmulet();
 
   const param: GetPremiumParam = {
     productId: ProductId.Raydium,

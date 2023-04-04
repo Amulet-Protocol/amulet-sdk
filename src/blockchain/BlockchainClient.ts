@@ -1,27 +1,26 @@
-import type { Connection } from '@solana/web3.js';
-import type {
-  AddressConfig,
-  BuyCoverParam,
-  StakeSolForAuwtParam,
-} from '../entity';
+import type { Connection, Signer } from '@solana/web3.js';
+import type { AddressConfig } from '../entity';
+import type * as api from '../entity/Api';
 
 import { BN } from '@project-serum/anchor';
 import { Keypair, PublicKey } from '@solana/web3.js';
 import { AmuletError, SendTransactionParam } from '../entity';
-import { findAta, findPda, setComputeBudgetInstruction } from './BlockchainUtil';
+import { findAta, findPda, getOrCreateAta, setComputeBudgetInstruction } from './BlockchainUtil';
 import { ProgramManager } from './ProgramManager';
 import { PublicKeys } from './PublicKeys';
 
 export class BlockchainClient {
+  private readonly connection: Connection;
   private readonly address: AddressConfig;
   private readonly programManager: ProgramManager;
 
   public constructor(connection: Connection, address: AddressConfig) {
+    this.connection = connection;
     this.address = address;
     this.programManager = new ProgramManager(connection, address);
   }
 
-  public async coverBuy(param: BuyCoverParam & {
+  public async coverBuy(param: api.BuyCoverParam & {
     coverId: string;
   }): Promise<SendTransactionParam> {
     const {
@@ -76,7 +75,7 @@ export class BlockchainClient {
       .mergeTx(instruction);
   }
 
-  public async stakeSolAuwt(param: StakeSolForAuwtParam): Promise<SendTransactionParam> {
+  public async stakeSolAuwt(param: api.StakeSolForAuwtParam): Promise<SendTransactionParam> {
     const { staker, stakeAmount } = param;
 
     const program = this.programManager.getSplStakingProgram();
@@ -127,6 +126,74 @@ export class BlockchainClient {
     return new SendTransactionParam()
       .mergeTx(setComputeBudgetInstruction(400000))
       .mergeTx(instruction, [tempAmtsolTaKeypair]);
+  }
+
+  public async redeemAuwtSplDelayed(param: api.RedeemAuwtDelayedParam & {
+    ticketAccount: Signer;
+    tokenOut: PublicKey;
+  }): Promise<SendTransactionParam> {
+    const { staker, redeemAmount, ticketAccount, tokenOut } = param;
+
+    const program = this.programManager.getSplStakingProgram();
+
+    const instance = this.getStakingInstanceBySplTokenOrThrow(tokenOut.toString());
+
+    const ataAuwt = await findAta(this.address.auwt.mint, staker);
+
+    const instruction = await program.submitWithdrawTicket({
+      param: {
+        auwtAmount: redeemAmount,
+      },
+      accounts: {
+        auwtBurnFromAuth: staker,
+        auwtBurnFromTa: ataAuwt,
+        newTicketState: ticketAccount.publicKey,
+        exchangeRateGroupState: this.address.programGroupMainState,
+        programSummaryState: this.address.programSummaryState,
+        programStakingInstanceState: instance.state,
+        auwtState: this.address.Auwt.state,
+        auwtProgram: this.address.Auwt.program,
+        splSolStakingCallerPda: this.address.SplStaking.callerPda,
+        auwtMint: this.address.auwt.mint,
+        sysvarClock: PublicKeys.SysvarClock,
+        systemProgram: PublicKeys.SystemProgram,
+        sysvarRent: PublicKeys.SysvarRent,
+        tokenProgram: PublicKeys.TokenProgram,
+      },
+    }).instruction();
+
+    return new SendTransactionParam(instruction, [ticketAccount]);
+  }
+
+  public async ticketAccountWithdraw(param: api.WithdrawTicketAccountParam & {
+    tokenOut: PublicKey;
+  }): Promise<SendTransactionParam> {
+    const { staker, ticketAccount, tokenOut } = param;
+
+    const program = this.programManager.getSplStakingProgram();
+
+    const instance = this.getStakingInstanceBySplTokenOrThrow(tokenOut.toString());
+
+    const [ataSpl, paramAtaSpl] = await getOrCreateAta(this.connection, instance.splMint, staker);
+
+    const instruction = await program.claimSplTokenFromTicket({
+      accounts: {
+        withdrawAuth: staker,
+        splTokenTransferTo: ataSpl,
+        withdrawTicketState: ticketAccount,
+        programSummaryState: this.address.programSummaryState,
+        programStakingInstanceState: instance.state,
+        programStakedSplTa: instance.splTa,
+        programStakedSplTaAuthPda: instance.splTaAuthPda,
+        sysvarClock: PublicKeys.SysvarClock,
+        sysvarRent: PublicKeys.SysvarRent,
+        tokenProgram: PublicKeys.TokenProgram,
+      },
+    }).instruction();
+
+    return new SendTransactionParam()
+      .merge(paramAtaSpl)
+      .mergeTx(instruction);
   }
 
   private findCoverStatePda(coverId: string) {

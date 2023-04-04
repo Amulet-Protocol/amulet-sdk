@@ -189,7 +189,7 @@ module.exports = [
   },
   {
     files: [
-      '**/*.spec.ts',
+      'test/**/*.ts',
     ],
     languageOptions: {
       globals: globals.mocha,
