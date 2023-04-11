@@ -1,6 +1,6 @@
 # amulet-sdk
 
-Use this to interact with Amulet services.
+Use this to interact with Amulet services. See [typedoc](docs/index.html) for documentation.
 
 ## Integration
 

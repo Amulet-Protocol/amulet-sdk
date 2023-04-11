@@ -25,7 +25,7 @@ export class BlockchainClient {
     coverId: string;
   }): Promise<SendTransactionParam> {
     const {
-      owner, referrer, productId, coverId, coverToken, coverAmount, days, nftMint, nftMetadataAddress,
+      owner, referrer, productId, coverId, coverToken, coverAmount, days, nftMint,
     } = param;
 
     const program = this.programManager.getUnderwritingProgram();
@@ -34,7 +34,7 @@ export class BlockchainClient {
 
     const [coverStatePda] = this.findCoverStatePda(coverId);
     const nftAta = (nftMint == null) ? PublicKey.default : await findAta(nftMint, owner);
-    const nftMetadataState = nftMetadataAddress ?? PublicKey.default;
+    const nftMetadataState = (nftMint == null) ? PublicKey.default: this.findNFTMetadataPda(nftMint)[0];
 
     const instruction = await program.buyCover({
       param: {
@@ -131,6 +131,13 @@ export class BlockchainClient {
 
   private findCoverStatePda(coverId: string) {
     return findPda(this.address.Cover.program, [this.address.Cover.state, 'cover_account_seed', coverId]);
+  }
+
+  private findNFTMetadataPda(nftTokenMint: PublicKey) {
+    // The NFT token metadata is based on Metaplex standard, 
+    // https://docs.metaplex.com/programs/token-metadata/accounts#metadata
+    const metaplexProgramId = new PublicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s")
+    return findPda(metaplexProgramId, ["metadata", metaplexProgramId, nftTokenMint])
   }
 
   private getProductAccountsOrThrow(productId: number) {
