@@ -8,8 +8,8 @@ import type { PublicKey, Signer, Transaction } from '@solana/web3.js';
  * @interface
  */
 export type CreateTransactionResult = {
-  readonly transaction: Transaction;
-  readonly signers: Signer[];
+  transaction: Transaction;
+  signers: Signer[];
 };
 
 /**
@@ -41,7 +41,6 @@ export type GetPremiumResult = {
  * @property owner The wallet address of the cover buyer.
  * @property referrer The wallet address of the referrer.
  * @property productId The cover product identifier.
- * @property coverToken The cover currency, by default is in aUWT.
  * @property coverAmount The cover amount in aUWT, decimals of 9.
  * @property days The cover duration in days.
  * @property nftMint The NFT token address for cover discount. Optional.
@@ -51,7 +50,6 @@ export type BuyCoverParam = {
   owner: PublicKey;
   referrer: PublicKey;
   productId: number;
-  coverToken: PublicKey;
   coverAmount: BN;
   days: number;
   nftMint?: PublicKey;
@@ -66,4 +64,35 @@ export type BuyCoverParam = {
 export type StakeSolForAuwtParam = {
   staker: PublicKey;
   stakeAmount: BN;
+};
+
+/**
+ * The aUWT redeem object used in `redeemAuwtForAmtsolDelayed` function.
+ * @property staker The wallet address of the staker.
+ * @property redeemAmount The redeem amount in lamports.
+ * @interface
+ */
+export type RedeemAuwtDelayedParam = {
+  staker: PublicKey;
+  redeemAmount: BN;
+};
+
+/**
+ * The aUWT redeem result object return by `redeemAuwtForAmtsolDelayed` function.
+ * @property ticketAccount The ticket token account address of the staker.
+ * @interface
+ */
+export type RedeemAuwtDelayedResult = CreateTransactionResult & {
+  ticketAccount: PublicKey;
+};
+
+/**
+ * The ticket withdrawal paramaeter object used in `withdrawAmtsolTicketAccount` function.
+ * @property staker The wallet address of the staker.
+ * @property ticketAccount The ticket token account address of the staker.
+ * @interface
+ */
+export type WithdrawTicketAccountParam = {
+  staker: PublicKey;
+  ticketAccount: PublicKey;
 };

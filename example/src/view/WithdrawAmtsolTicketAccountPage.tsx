@@ -1,8 +1,8 @@
-import { BN } from '@amulet/sdk';
-import { useCallback, useMemo, useState } from 'react';
+import { PublicKey } from '@solana/web3.js';
+import { useCallback, useState } from 'react';
 import { useAmulet, useBlockchain } from '../hook';
 
-export default function StakeSolForAuwtPage() {
+export default function WithdrawAmtsolTicketAccountPage() {
   const { amulet } = useAmulet();
   const { publicKey, sendAndConfirmTransaction } = useBlockchain();
 
@@ -10,11 +10,7 @@ export default function StakeSolForAuwtPage() {
   const [signature, setSignature] = useState('');
   const [error, setError] = useState<any>(null);
 
-  const [inputAmount, setInputAmount] = useState('1');
-
-  const stakeAmount = useMemo(() => {
-    return new BN(Number(inputAmount) * 1e9);
-  }, [inputAmount]);
+  const [inputTicket, setInputTicket] = useState('');
 
   const handleConfirm = useCallback(async () => {
     setSignature('');
@@ -27,9 +23,9 @@ export default function StakeSolForAuwtPage() {
     setLoading(true);
 
     try {
-      const { transaction, signers } = await amulet.stakeSolForAuwt({
+      const { transaction, signers } = await amulet.withdrawAmtsolTicketAccount({
         staker: publicKey,
-        stakeAmount,
+        ticketAccount: new PublicKey(inputTicket),
       });
 
       const result = await sendAndConfirmTransaction(transaction, signers);
@@ -42,15 +38,14 @@ export default function StakeSolForAuwtPage() {
     }
 
     setLoading(false);
-  }, [amulet, publicKey, sendAndConfirmTransaction, stakeAmount]);
+  }, [amulet, publicKey, sendAndConfirmTransaction, inputTicket]);
 
   return (
     <div>
-      <h1>Stake SOL for aUWT</h1>
-      <p>Stake Amount</p>
+      <h1>Withdraw amtSOL ticket account</h1>
+      <p>Ticket Account</p>
       <p>
-        <input value={inputAmount} onChange={(event) => setInputAmount(event.target.value)} />
-        <span> SOL</span>
+        <input value={inputTicket} onChange={(event) => setInputTicket(event.target.value)} />
       </p>
       <button onClick={handleConfirm}>Confirm</button>
       { loading && <p>Loading...</p> }

@@ -37,6 +37,7 @@ export type MetaProgramsRawAddress = {
       programStakingInstanceState: string;
       programStakedSplMint: string;
       programStakedSplTa: string;
+      programStakedSplTaAuthPda: string;
       programLiqStakedSplTa: string;
       programLiqAuwtTaAuthPda: string;
       programLiqAuwtTa: string;

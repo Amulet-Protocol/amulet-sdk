@@ -36,5 +36,4 @@ export class PoolProgram {
   public unstakeFromIndividualPool(option: InstructionOption<entity.UnstakeFromIndividualPoolParam, entity.UnstakeFromIndividualPoolAccounts>) {
     return this.methods.unstakeFromIndividualPool(option.param.lpAuwtAmount).accounts(option.accounts);
   }
-
 }

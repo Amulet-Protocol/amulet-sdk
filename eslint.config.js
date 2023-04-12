@@ -187,4 +187,17 @@ module.exports = [
       },
     },
   },
+  {
+    files: [
+      'test/**/*.ts',
+    ],
+    languageOptions: {
+      globals: globals.mocha,
+      parserOptions: {
+        project: [
+          './tsconfig.test.json',
+        ],
+      },
+    },
+  },
 ];

@@ -36,7 +36,7 @@ module.exports = {
     '@solana/web3.js': '@solana/web3.js',
   },
   performance: {
-    maxAssetSize: 5 * 1000 * 1000, // 5.0 MiB
-    maxEntrypointSize: 5 * 1000 * 1000, // 5.0 MiB
+    maxAssetSize: 5 * 1024 * 1024, // 5.0 MiB
+    maxEntrypointSize: 5 * 1024 * 1024, // 5.0 MiB
   },
 };

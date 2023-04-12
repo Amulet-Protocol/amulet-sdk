@@ -1,6 +1,6 @@
 {
   "include": [
-    "src"
+    "src",
   ],
   "compilerOptions": {
     "allowUnreachableCode": false,
@@ -28,7 +28,6 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
     "skipLibCheck": true,
   }
 }

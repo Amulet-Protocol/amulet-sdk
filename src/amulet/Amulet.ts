@@ -1,14 +1,9 @@
 import type { Connection } from '@solana/web3.js';
 import type { Config } from '../config';
-import type {
-  BuyCoverParam,
-  CreateTransactionResult,
-  GetPremiumParam,
-  GetPremiumResult,
-  StakeSolForAuwtParam,
-  Tokens,
-} from '../entity';
+import type { TokenDefinition } from '../entity';
+import type * as api from '../entity/Api';
 
+import { Keypair } from '@solana/web3.js';
 import { BackendClient } from '../backend';
 import { BlockchainClient, BlockchainReader, ErrorParser } from '../blockchain';
 import { ConfigDevnet, ConfigMainnet } from '../config';
@@ -34,7 +29,7 @@ export type AmuletConfig = {
 export class Amulet {
   public mode: Mode;
   public connection: Connection;
-  public tokens: Tokens;
+  public tokens: TokenDefinition;
   public errorParser: ErrorParser;
 
   private config: Config;
@@ -63,6 +58,9 @@ export class Amulet {
       auwt: {
         publicKey: this.config.address.auwt.mint,
       },
+      amtsol: {
+        publicKey: this.config.address.amtsol.mint,
+      },
     };
   }
 
@@ -73,8 +71,9 @@ export class Amulet {
    * @param param - The get premium parameter object.
    * @returns The premium amount.
    */
-  public getPremium(param: GetPremiumParam): Promise<GetPremiumResult> {
-    validate(!param.coverAmount.isZero() && !param.coverAmount.isNeg(), new AmuletError('coverAmount must be positive.'));
+  public getPremium(param: api.GetPremiumParam): Promise<api.GetPremiumResult> {
+    validate(Number.isInteger(param.productId) && param.productId > 0, new AmuletError('productId must be a positive integer.'));
+    validate(!param.coverAmount.isZero() && !param.coverAmount.isNeg(), new AmuletError('coverAmount must be a positive BN.'));
     validate(Number.isInteger(param.days) && param.days > 0, new AmuletError('days must be a positive integer.'));
 
     return this.backendClient.getPremium(param);
@@ -86,8 +85,9 @@ export class Amulet {
    * @param param - The buy cover parameter object.
    * @returns The transaction result.
    */
-  public async buyCover(param: BuyCoverParam): Promise<CreateTransactionResult> {
-    validate(!param.coverAmount.isZero() && !param.coverAmount.isNeg(), new AmuletError('coverAmount must be positive.'));
+  public async buyCover(param: api.BuyCoverParam): Promise<api.CreateTransactionResult> {
+    validate(Number.isInteger(param.productId) && param.productId > 0, new AmuletError('productId must be a positive integer.'));
+    validate(!param.coverAmount.isZero() && !param.coverAmount.isNeg(), new AmuletError('coverAmount must be a positive BN.'));
     validate(Number.isInteger(param.days) && param.days > 0, new AmuletError('days must be a positive integer.'));
 
     const info = await this.blockchainReader.getCoverAccountInfo();
@@ -106,7 +106,47 @@ export class Amulet {
    * @param param - The staking parameter object.
    * @returns The transaction result.
    */
-  public stakeSolForAuwt(param: StakeSolForAuwtParam): Promise<CreateTransactionResult> {
+  public stakeSolForAuwt(param: api.StakeSolForAuwtParam): Promise<api.CreateTransactionResult> {
+    validate(!param.stakeAmount.isZero() && !param.stakeAmount.isNeg(), new AmuletError('stakeAmount must be a positive BN.'));
+
     return this.blockchainClient.stakeSolAuwt(param);
+  }
+
+  /**
+   * Swapping aUWT for amtSOL by delayed unstaking. 
+   * A ticket receipt will be generated and transferred to the token account.
+   * The ticket can only be used to withdraw amtSOL after a waiting period.
+   *
+   * @param param - The redeem aUWT parameter object.
+   * @returns The transaction result.
+   */
+  public async redeemAuwtForAmtsolDelayed(param: api.RedeemAuwtDelayedParam): Promise<api.RedeemAuwtDelayedResult> {
+    validate(!param.redeemAmount.isZero() && !param.redeemAmount.isNeg(), new AmuletError('redeemAmount must be a positive BN.'));
+
+    const ticketAccount = Keypair.generate();
+
+    const result = await this.blockchainClient.redeemAuwtSplDelayed({
+      ...param,
+      ticketAccount,
+      tokenOut: this.tokens.amtsol.publicKey,
+    });
+
+    return {
+      ...result.toObject(),
+      ticketAccount: ticketAccount.publicKey,
+    };
+  }
+
+  /**
+   * Withdraw amtSOL with the ticket receipt.
+   *
+   * @param param - The ticket withdrawal parameter object.
+   * @returns The transaction result.
+   */
+  public withdrawAmtsolTicketAccount(param: api.WithdrawTicketAccountParam): Promise<api.CreateTransactionResult> {
+    return this.blockchainClient.ticketAccountWithdraw({
+      ...param,
+      tokenOut: this.tokens.amtsol.publicKey,
+    });
   }
 }

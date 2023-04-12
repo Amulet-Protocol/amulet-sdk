@@ -68,7 +68,6 @@ export default function BuyCoverPage() {
         owner: publicKey,
         referrer: publicKey,
         productId,
-        coverToken: amulet.tokens.auwt.publicKey,
         coverAmount,
         days,
       });
@@ -77,7 +76,9 @@ export default function BuyCoverPage() {
 
       setSignature(result);
     } catch (e) {
-      setError(e);
+      const err = amulet.errorParser.parseBuyCoverError(e);
+
+      setError(err ?? e);
     }
 
     setLoading(false);

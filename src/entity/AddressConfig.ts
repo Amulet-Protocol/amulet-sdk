@@ -55,7 +55,9 @@ export type AddressConfig = {
   readonly stakingInstances: {
     readonly [address: string]: {
       readonly key: string;
+      readonly splMint: PublicKey;
       readonly splTa: PublicKey;
+      readonly splTaAuthPda: PublicKey;
       readonly state: PublicKey;
       readonly liqSplTa: PublicKey;
       readonly liqAuwtTa: PublicKey;
@@ -186,7 +188,9 @@ export function extractAddress(
         ...previous,
         [item.programStakedSplMint]: {
           key,
+          splMint: new PublicKey(item.programStakedSplMint),
           splTa: new PublicKey(item.programStakedSplTa),
+          splTaAuthPda: new PublicKey(item.programStakedSplTaAuthPda),
           state: new PublicKey(item.programStakingInstanceState),
           liqSplTa: new PublicKey(item.programLiqStakedSplTa),
           liqAuwtTa: new PublicKey(item.programLiqAuwtTa),

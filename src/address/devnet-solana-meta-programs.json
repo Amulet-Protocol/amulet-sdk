@@ -29,6 +29,7 @@
     "quotationResultState": "HDH9hvDDjiDSagPoBWtjAmqeme6PqoUGxwqVUohWbLxs",
     "stakingInstance": {
       "amtsolMint": {
+        "programStakedSplTaAuthPda": "DwhTLqCa1ShxWzWudWXwaS7imxGp82DENzDQxJCgdzUQ",
         "programStakedSplMint": "CFjEuT1RpFfoQ1KmKeEArmGCZEatNcydJPLnvHMgYaER",
         "programStakingInstanceState": "6LcU48pGGfAigHR33kqtYPXneewFgfJ8b5y63upSnvkJ",
         "programStakedSplTa": "4TFXr2Dz3whdgrWTKarf7gEDSKxkUWEeuv9nkt8SB9bJ",
