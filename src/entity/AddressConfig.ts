@@ -2,11 +2,6 @@ import type { MetaProgramsRawAddress } from './AddressConfigRaw';
 
 import { PublicKey } from '@solana/web3.js';
 
-type MultisigAddressConfig = {
-  readonly instance: PublicKey;
-  readonly signer: PublicKey;
-};
-
 export type AddressConfig = {
   readonly amtsol: {
     readonly mint: PublicKey;
@@ -26,18 +21,6 @@ export type AddressConfig = {
   readonly programGroupMainState: PublicKey;
   readonly programSummaryState: PublicKey;
   readonly premiumPoolAccountPda: PublicKey;
-  readonly Multisig: {
-    readonly program: PublicKey;
-    readonly admin: MultisigAddressConfig;
-    readonly exhangeRate: MultisigAddressConfig;
-    readonly ops: MultisigAddressConfig;
-    readonly claimOps: MultisigAddressConfig;
-  };
-  readonly Pcuv: {
-    readonly program: PublicKey;
-    readonly state: PublicKey;
-    readonly solPda: PublicKey;
-  };
   readonly Auwt: {
     readonly program: PublicKey;
     readonly state: PublicKey;
@@ -54,16 +37,11 @@ export type AddressConfig = {
     readonly program: PublicKey;
     readonly state: PublicKey;
     readonly cpiAuthPda: PublicKey;
-    readonly auwtAuthPda: PublicKey;
   };
   readonly Underwrite: {
     readonly program: PublicKey;
     readonly state: PublicKey;
     readonly callerAuthPda: PublicKey;
-  };
-  readonly Product: {
-    readonly program: PublicKey;
-    readonly state: PublicKey;
   };
   readonly Quotation: {
     readonly program: PublicKey;
@@ -74,31 +52,14 @@ export type AddressConfig = {
     readonly program: PublicKey;
     readonly state: PublicKey;
   };
-  readonly Claim: {
-    readonly program: PublicKey;
-    readonly state: PublicKey;
-    readonly authPda: PublicKey;
-    readonly solPda: PublicKey;
-    readonly auwtTa: PublicKey;
-  };
-  readonly assets: {
-    readonly amtsolTa: PublicKey;
-    readonly auwtTa: PublicKey;
-  };
   readonly stakingInstances: {
     readonly [address: string]: {
       readonly key: string;
-      readonly splMint: PublicKey;
       readonly splTa: PublicKey;
-      readonly splTaAuthPda: PublicKey;
-      readonly lpAuwtMint: PublicKey;
-      readonly lpAuwtMintAuthPda: PublicKey;
       readonly state: PublicKey;
       readonly liqSplTa: PublicKey;
-      readonly liqSplTaAuthPda: PublicKey;
       readonly liqAuwtTa: PublicKey;
       readonly liqAuwtTaAuthPda: PublicKey;
-      readonly pcuvSplTa: PublicKey;
     };
   };
   readonly products: {
@@ -132,30 +93,6 @@ export const DEFAULT_ADDRESS_CONFIG: AddressConfig = {
   programGroupMainState: PublicKey.default,
   programSummaryState: PublicKey.default,
   premiumPoolAccountPda: PublicKey.default,
-  Multisig: {
-    program: PublicKey.default,
-    admin: {
-      instance: PublicKey.default,
-      signer: PublicKey.default,
-    },
-    exhangeRate: {
-      instance: PublicKey.default,
-      signer: PublicKey.default,
-    },
-    ops: {
-      instance: PublicKey.default,
-      signer: PublicKey.default,
-    },
-    claimOps: {
-      instance: PublicKey.default,
-      signer: PublicKey.default,
-    },
-  },
-  Pcuv: {
-    program: PublicKey.default,
-    state: PublicKey.default,
-    solPda: PublicKey.default,
-  },
   Auwt: {
     program: PublicKey.default,
     state: PublicKey.default,
@@ -172,16 +109,11 @@ export const DEFAULT_ADDRESS_CONFIG: AddressConfig = {
     program: PublicKey.default,
     state: PublicKey.default,
     cpiAuthPda: PublicKey.default,
-    auwtAuthPda: PublicKey.default,
   },
   Underwrite: {
     program: PublicKey.default,
     state: PublicKey.default,
     callerAuthPda: PublicKey.default,
-  },
-  Product: {
-    program: PublicKey.default,
-    state: PublicKey.default,
   },
   Quotation: {
     program: PublicKey.default,
@@ -191,17 +123,6 @@ export const DEFAULT_ADDRESS_CONFIG: AddressConfig = {
   Cover: {
     program: PublicKey.default,
     state: PublicKey.default,
-  },
-  Claim: {
-    program: PublicKey.default,
-    state: PublicKey.default,
-    authPda: PublicKey.default,
-    solPda: PublicKey.default,
-    auwtTa: PublicKey.default,
-  },
-  assets: {
-    amtsolTa: PublicKey.default,
-    auwtTa: PublicKey.default,
   },
   stakingInstances: {},
   products: {},
@@ -229,30 +150,6 @@ export function extractAddress(
     programGroupMainState: new PublicKey(addressMeta.programGroupMainState),
     programSummaryState: new PublicKey(addressMeta.programSummaryState),
     premiumPoolAccountPda: new PublicKey(addressMeta.premiumPoolAccountPda),
-    Multisig: {
-      program: new PublicKey(addressMeta.multisig.programId),
-      admin: {
-        instance: new PublicKey(addressMeta.multisig.adminMultisig.multisigInstance),
-        signer: new PublicKey(addressMeta.multisig.adminMultisig.multisigSigner),
-      },
-      exhangeRate: {
-        instance: new PublicKey(addressMeta.multisig.exhangeRateMultisig.multisigInstance),
-        signer: new PublicKey(addressMeta.multisig.exhangeRateMultisig.multisigSigner),
-      },
-      ops: {
-        instance: new PublicKey(addressMeta.multisig.opsMultisig.multisigInstance),
-        signer: new PublicKey(addressMeta.multisig.opsMultisig.multisigSigner),
-      },
-      claimOps: {
-        instance: new PublicKey(addressMeta.multisig.claimOpsMultisig.multisigInstance),
-        signer: new PublicKey(addressMeta.multisig.claimOpsMultisig.multisigSigner),
-      },
-    },
-    Pcuv: {
-      program: new PublicKey(addressMeta.Programs.PcuvAssetsProgram),
-      state: new PublicKey(addressMeta.pcuvProgramMetadataState),
-      solPda: new PublicKey(addressMeta.pcuvSolPda),
-    },
     Auwt: {
       program: new PublicKey(addressMeta.Programs.AuwtTokenProgram),
       state: new PublicKey(addressMeta.auwtState),
@@ -269,16 +166,11 @@ export function extractAddress(
       program: new PublicKey(addressMeta.Programs.PoolProgram),
       state: new PublicKey(addressMeta.poolProgramMetadataState),
       cpiAuthPda: new PublicKey(addressMeta.poolCpiAuthPda),
-      auwtAuthPda: new PublicKey(addressMeta.auwtPoolAuthPda),
     },
     Underwrite: {
       program: new PublicKey(addressMeta.Programs.UnderwritingProgram),
       state: new PublicKey(addressMeta.underwritingProgramMetadataState),
       callerAuthPda: new PublicKey(addressMeta.underwritingCallerAuthPda),
-    },
-    Product: {
-      program: new PublicKey(addressMeta.Programs.ProductProgram),
-      state: new PublicKey(addressMeta.productProgramMetadataState),
     },
     Quotation: {
       program: new PublicKey(addressMeta.Programs.QuotationProgram),
@@ -289,33 +181,16 @@ export function extractAddress(
       program: new PublicKey(addressMeta.Programs.CoverProgram),
       state: new PublicKey(addressMeta.coverProgramMetadataState),
     },
-    Claim: {
-      program: new PublicKey(addressMeta.Programs.ClaimProgram),
-      state: new PublicKey(addressMeta.claimProgramMetadataState),
-      authPda: new PublicKey(addressMeta.claimProgramCallerAuthPda),
-      solPda: new PublicKey(addressMeta.claimProgramSolPda),
-      auwtTa: new PublicKey(addressMeta.claimProgramAwtAccount),
-    },
-    assets: {
-      amtsolTa: new PublicKey(addressMeta.tokenAssets.amtsolMint.pcuvTokenAccount),
-      auwtTa: new PublicKey(addressMeta.tokenAssets.auwtMint.pcuvTokenAccount),
-    },
     stakingInstances: Object.entries(addressMeta.stakingInstance).reduce<AddressConfig['stakingInstances']>((previous, [key, item]) => {
       return {
         ...previous,
         [item.programStakedSplMint]: {
           key,
-          splMint: new PublicKey(item.programStakedSplMint),
           splTa: new PublicKey(item.programStakedSplTa),
-          splTaAuthPda: new PublicKey(item.programStakedSplTaAuthPda),
-          lpAuwtMint: new PublicKey(item.lpMint),
-          lpAuwtMintAuthPda: new PublicKey(item.lpMintAuthPda),
           state: new PublicKey(item.programStakingInstanceState),
           liqSplTa: new PublicKey(item.programLiqStakedSplTa),
-          liqSplTaAuthPda: new PublicKey(item.programLiqStakedSplTaAuthPda),
           liqAuwtTa: new PublicKey(item.programLiqAuwtTa),
           liqAuwtTaAuthPda: new PublicKey(item.programLiqAuwtTaAuthPda),
-          pcuvSplTa: new PublicKey(item.pcuvStakedSplTa),
         },
       };
     }, {}),

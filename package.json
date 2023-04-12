@@ -13,6 +13,13 @@
     "lint": "eslint --config ./eslint.config.js ./src ./eslint.config.js ./webpack.config.js",
     "docs": "typedoc --exclude src/entity/AddressConfig.ts --exclude src/entity/AddressConfigRaw.ts --exclude src/entity/Simulation.ts --exclude src/entity/Token.ts --exclude src/entity/SendTransactionParam.ts src/index.ts"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/Amulet-Protocol"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Amulet-Protocol/amt-lib-shared.git"
+  },
   "dependencies": {
     "@project-serum/anchor": "^0.26.0",
     "@solana/spl-token": "^0.3.7",

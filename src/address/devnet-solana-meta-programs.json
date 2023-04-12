@@ -1,292 +1,130 @@
 {
-    "multisig": {
-        "programId": "S9mpaqVvZRLp3u3pcutzTJ2mGMMontKtermngFUPPFb",
-        "adminMultisig": {
-            "multisigSigner": "2MveesfYBJ7CgpXcsrq1zxW9vroRfH7v3B4ofsR6e383",
-            "multisigInstance": "3NeaeCAimgJ8PeJH8TajCk6mY2UYeefNqhJz9ET5TRGy",
-            "nonce": 254
-        },
-        "opsMultisig": {
-            "multisigSigner": "9W1EtUvCd5Qf2BusEB5q6CU6iXhPyfCTPJWRNb8Mznpg",
-            "multisigInstance": "HfXShQyPi4GVZu7bndHeLpkDURPdXCqWBQLiqYLmTQkZ",
-            "nonce": 254
-        },
-        "exhangeRateMultisig": {
-            "multisigSigner": "6AydWJixvhabDiKS5uAAqA6M4cyeNrB6FJsLdSaHGayj",
-            "multisigInstance": "81utcAaSaeEicczCT7V3T5TfPWsiE9G5S8L9STvSTGRZ",
-            "nonce": 255
-        },
-        "claimOpsMultisig": {
-            "multisigSigner": "5r327jfup5TVGoiBSBx34xUUg9xLxzQ8cDfsE5w64cJm",
-            "multisigInstance": "BND51Ns5ZRps6PvG5SukERVtcDjBvkNnwkBLMqbNKsMg",
-            "nonce": 249
-        }
-    },
     "token": {
-        "amtsolMint": "CFjEuT1RpFfoQ1KmKeEArmGCZEatNcydJPLnvHMgYaER",
-        "lpSolAmtsolMint": "L87gJDV3WeYpddDBsJYR5J646PURGm8erJSwHo5zQpT",
-        "auwtMint": "4g7gM8vL2abJKxMTbfhPKmnXyeb1zJg1kJRZJAo8KbqQ"
-    },
-    "splSol": {
-        "amtsolMint": "CFjEuT1RpFfoQ1KmKeEArmGCZEatNcydJPLnvHMgYaER"
+      "amtsolMint": "CFjEuT1RpFfoQ1KmKeEArmGCZEatNcydJPLnvHMgYaER",
+      "lpSolAmtsolMint": "L87gJDV3WeYpddDBsJYR5J646PURGm8erJSwHo5zQpT",
+      "auwtMint": "4g7gM8vL2abJKxMTbfhPKmnXyeb1zJg1kJRZJAo8KbqQ"
     },
     "Programs": {
-        "AmuletSolStakingProgram": "GWTM1zESSDhKQLx5V86F84RQnNnzsY5t2qQLU37qymqK",
-        "AuwtTokenProgram": "7hQSYubpvdECQNUZE56CJFEfJqsi17rjfrw2Kwrpzsmp",
-        "ClaimProgram": "7GDdKYjqb6ykCEJhaMfniYuuCosa7VmdW5uUMwAXH5K3",
-        "CoverProgram": "4KqvTiQjgp11cCfWWRiCqoAKYTAFeaTpmFomazAwGVnN",
-        "ExchangeRateProgram": "F7VAinELsAnKaiiHAtyB97fUwzG2eJA6hju2wevGBDmJ",
-        "PcuvAssetsProgram": "B1AditthsAcwJscutMzESCbXQV3dju7NLTK1qEujQhx1",
-        "PoolProgram": "CGihxmkhvxKwW5eVwAHZ1GN6mX1ruQua28aPcpJZkNNB",
-        "ProductProgram": "7mfQE3FHsEWiQxNxMnuGFN5yZHchHFdoL44WfqUZmuDC",
-        "QuotationProgram": "FPQoawYduFFdFrmr39ufkyH9YDENFyvFscNDJU7nvNBW",
-        "SplSolStakingProgram": "GA9Vb435JLwnEFXidofHNDQmH4Ztq9vbsxPGWuZLWeRU",
-        "UnderwritingProgram": "7CsR6bj6D4WVJw8o3sXpmDapEoHVACsNMenF3f77omzA"
+      "AmuletSolStakingProgram": "GWTM1zESSDhKQLx5V86F84RQnNnzsY5t2qQLU37qymqK",
+      "AuwtTokenProgram": "7hQSYubpvdECQNUZE56CJFEfJqsi17rjfrw2Kwrpzsmp",
+      "CoverProgram": "4KqvTiQjgp11cCfWWRiCqoAKYTAFeaTpmFomazAwGVnN",
+      "PoolProgram": "CGihxmkhvxKwW5eVwAHZ1GN6mX1ruQua28aPcpJZkNNB",
+      "QuotationProgram": "FPQoawYduFFdFrmr39ufkyH9YDENFyvFscNDJU7nvNBW",
+      "SplSolStakingProgram": "GA9Vb435JLwnEFXidofHNDQmH4Ztq9vbsxPGWuZLWeRU",
+      "UnderwritingProgram": "7CsR6bj6D4WVJw8o3sXpmDapEoHVACsNMenF3f77omzA"
     },
-    "initializer": "HCJ9m9EZetEvaM1mjF3bXNFXMRym7WXw7vWuw6ikJy7v",
-    "pcuvAssetsAdminA": "2qM7yV1wYCabqqvTZM7kMjrcdFi62ngtxCJEfayeK8N9",
-    "pcuvProgramMetadataState": "AwnQp6HyKGkKpvrccExebwribBtdRjuQkAWnz7bTqZS4",
-    "pcuvAssetsAdminAuth": "2qM7yV1wYCabqqvTZM7kMjrcdFi62ngtxCJEfayeK8N9",
-    "pcuvSolPda": "AbuwxxK4PyjkTACJnfjrfLSFnTcDPwrihEAA1gfYzLJB",
-    "tokenAssets": {
-        "amtsolMint": {
-            "programMetadataState": "AwnQp6HyKGkKpvrccExebwribBtdRjuQkAWnz7bTqZS4",
-            "pcuvAssetsAdminAuth": "2qM7yV1wYCabqqvTZM7kMjrcdFi62ngtxCJEfayeK8N9",
-            "pcuvTokenAssetState": "Ee6PJjgexjNyPW4cmVN2bFmB1VXarfJofCxe2ro9a7FC",
-            "pcuvTokenAccountAuthPda": "pFdSghkvpMqPq8vYVPjfFZYMVifdYoDUoVbohaqE86z",
-            "pcuvTokenAccount": "5QE9ucUKNiAzYhP9mAomsyLfZJ3ksJAdYTidqvkqEo46",
-            "pcuvTokenMint": "CFjEuT1RpFfoQ1KmKeEArmGCZEatNcydJPLnvHMgYaER"
-        },
-        "lpSolAmtsolMint": {
-            "programMetadataState": "AwnQp6HyKGkKpvrccExebwribBtdRjuQkAWnz7bTqZS4",
-            "pcuvAssetsAdminAuth": "2qM7yV1wYCabqqvTZM7kMjrcdFi62ngtxCJEfayeK8N9",
-            "pcuvTokenAssetState": "DKb5e1qgiiRNdfnvk3Eg2kWRzdpGaFFnDzqCsZw3kscP",
-            "pcuvTokenAccountAuthPda": "ggoqJnBdbSKdFcUtuo3b6q3kBVHmpjrkRGqr3zb2Qd6",
-            "pcuvTokenAccount": "CrnoCLBvhRkdes8XSb6buHmP7u6vNTmuP2TT1iJLq84z",
-            "pcuvTokenMint": "L87gJDV3WeYpddDBsJYR5J646PURGm8erJSwHo5zQpT"
-        },
-        "auwtMint": {
-            "programMetadataState": "AwnQp6HyKGkKpvrccExebwribBtdRjuQkAWnz7bTqZS4",
-            "pcuvAssetsAdminAuth": "2qM7yV1wYCabqqvTZM7kMjrcdFi62ngtxCJEfayeK8N9",
-            "pcuvTokenAssetState": "5RVpSk2nwtSjN9k8yne586u7gmZX9rWq1hnFEi8fjeoH",
-            "pcuvTokenAccountAuthPda": "7WD3T73NG7BrKWqXBFSEnL4jufiKHwXNdHprwDGJZ5qo",
-            "pcuvTokenAccount": "AP3LQxtao7yvJLKHzbcgqcF6ZiKLMeutKmV8ZdvAfFff",
-            "pcuvTokenMint": "4g7gM8vL2abJKxMTbfhPKmnXyeb1zJg1kJRZJAo8KbqQ"
-        }
-    },
-    "adminA": "G5nELQ7Au8C3W6cXuoATKSEPrPyevVmWkLgvedeqJE5s",
-    "operator": "9t3umBx9Xgz2cnWxvdotVq4s4xQz3Ed7qbYq3MZ8TAUw",
     "auwtState": "F55GCh3YVZGsXbSmTrC3BCsWbAcpyqH279rnmrDC7mwF",
     "auwtMintAuthPda": "CKbg216BzJqgSfZFABKssFgD6HF7PZWwmQQLcayMHuSa",
-    "auwtMintAuthPdaBump": 255,
-    "auwtCommonAuthPda": "DFaJkdnCyKZE74uxYqMzDKqf2Cw6J6GMc39p2djMDSWe",
-    "auwtCommonAuthPdaBump": 252,
-    "auwtCommonEarnedPremiumAuwtTokenAccount": "CfDpuuXiZ8Q4pNdUnGGbYU2MWS9KCmUiEuTDNF32y8jM",
     "auwtMint": "4g7gM8vL2abJKxMTbfhPKmnXyeb1zJg1kJRZJAo8KbqQ",
-    "productProgramMetadataState": "8EokeTAw8h3ubsw8NePaSH1roBQRMyHeZFqe5hDnX12x",
     "quotationProgramMetadataState": "BurgsanRWnDGBrxdNcGg1BfJsuBG7BzPu2DnCbkQdoHB",
     "coverProgramMetadataState": "BfL7TKKf2zu1aEms9R9Na3in2ydGyEXLPtECMj3rh9LN",
     "poolProgramMetadataState": "D2X74rTBd8jTPNMdWRJrMmUdrjUTK73VKn13UXpsnKJQ",
     "poolCpiAuthPda": "59yMmncYhP2559NNQbhn6oSzJPDuojT5f8Tzs2FxmKcG",
-    "poolCpiAuthPdaBump": 255,
-    "auwtPoolAuthPda": "GV8EQVSdUGJ5YQKastwKLvf6wLX6AGMSLvf8gFrGjGf",
-    "auwtPoolAuthPdaBump": 253,
     "underwritingProgramMetadataState": "ATwQrH9pR14s5u3c6GXuTyn3P1z1qyA3DwtBduJrikvf",
     "underwritingCallerAuthPda": "5n1GKfs8s6KsRtyvsdQHGocCPuXoMPX78MiD5Eq5xQTK",
-    "underwritingCallerAuthPdaBump": 255,
     "premiumPoolAccountPda": "7bYb4xCPBQPRZjt4zU5ooJ1bqwwoe98TpzUGLuZWXBmb",
-    "premiumPoolAccountPdaBump": 254,
-    "premiumPoolAmtsolAccount": "GKR1zqZ2dRNncwC7utRw1z2Vnqw4AYkRtyGPnA4EPjCW",
-    "premiumPoolAuwtAccount": "BFZEjvrcp1DWAFWcR8aFNTUasTjU1oAmhEtvjcBuzcH1",
-    "exchangeRateAdmin": "6AydWJixvhabDiKS5uAAqA6M4cyeNrB6FJsLdSaHGayj",
     "programGroupMainState": "52uvJGo1pR6yv5HokmpQn3R3rQyuuvrH7xcUbVMJ8iDA",
     "programSummaryState": "3GWH7P34NAT5VoKNHQmr1xPKkdA9pUc2VgWbbUVgRLeR",
     "splSolStakingCallerPda": "5KN6dAnha5bCXVdE2bXpkJ57TAkV491eSeB1m2f5aFgJ",
-    "splSolStakingCallerPdaBump": 255,
     "quotationResultState": "HDH9hvDDjiDSagPoBWtjAmqeme6PqoUGxwqVUohWbLxs",
-    "claimProgramMetadataState": "HmG4CZdj7ke2McEtYRxikQqAHEZ8jDpnWJigodbm4Xs7",
-    "claimProgramCallerAuthPda": "6Yhj6K3LdVVEbp6AjZ5hHcYabUqrvxZMtqGpjLJtH38n",
-    "claimProgramCallerAuthPdaBump": 253,
-    "claimProgramSolPda": "H2xL8cUm7f4wFpUJzkG4ayzHJkqcNchCZkbR6DERrJDi",
-    "claimProgramSolPdaBump": 255,
-    "claimProgramAwtAccount": "B4ZgA3XLUkJUjE4ghcZWp4WKU81LqA2dF5Bvdhd1xRWH",
     "stakingInstance": {
-        "amtsolMint": {
-            "programStakingInstanceState": "6LcU48pGGfAigHR33kqtYPXneewFgfJ8b5y63upSnvkJ",
-            "programStakedSplTaAuthPda": "DwhTLqCa1ShxWzWudWXwaS7imxGp82DENzDQxJCgdzUQ",
-            "programStakedSplTaAuthPdaBump": 255,
-            "programStakedSplTa": "4TFXr2Dz3whdgrWTKarf7gEDSKxkUWEeuv9nkt8SB9bJ",
-            "programStakedSplMint": "CFjEuT1RpFfoQ1KmKeEArmGCZEatNcydJPLnvHMgYaER",
-            "programLiqStakedSplTaAuthPda": "BuEpgGqDcTtrspvdJvToWLoyziY1RnLNGYQdU2Xx5R5s",
-            "programLiqStakedSplTa": "2iMA86h9YYAwzbhqPCij1BfHYQhNoPoaZx3fZg4s13iP",
-            "programLiqAuwtTaAuthPda": "5EJ9bo2roQP7cFFcDBHJPKZNeLQfLgFZtA3czqem5ZcD",
-            "programLiqAuwtTa": "9VtiWmBy7jqDsKdrCbH5YSQnC3cqZqrjVos7iSqfqKdw",
-            "programLiqAuwtMint": "4g7gM8vL2abJKxMTbfhPKmnXyeb1zJg1kJRZJAo8KbqQ",
-            "lpMintAuthPda": "JAstdGqSpQVhLMFKfXqhgXEFiTWHKfWki5u8bCFfnTZr",
-            "lpMint": "DyFwT24vYcjmtCJoApPEv6JgH8JeMz9DAAdUSnPUH73B",
-            "pcuvStakedSplTa": "5QE9ucUKNiAzYhP9mAomsyLfZJ3ksJAdYTidqvkqEo46"
-        }
+      "amtsolMint": {
+        "programStakedSplMint": "CFjEuT1RpFfoQ1KmKeEArmGCZEatNcydJPLnvHMgYaER",
+        "programStakingInstanceState": "6LcU48pGGfAigHR33kqtYPXneewFgfJ8b5y63upSnvkJ",
+        "programStakedSplTa": "4TFXr2Dz3whdgrWTKarf7gEDSKxkUWEeuv9nkt8SB9bJ",
+        "programLiqStakedSplTa": "2iMA86h9YYAwzbhqPCij1BfHYQhNoPoaZx3fZg4s13iP",
+        "programLiqAuwtTaAuthPda": "5EJ9bo2roQP7cFFcDBHJPKZNeLQfLgFZtA3czqem5ZcD",
+        "programLiqAuwtTa": "9VtiWmBy7jqDsKdrCbH5YSQnC3cqZqrjVos7iSqfqKdw"
+      }
     },
     "products": {
-        "1": {
-            "productStatePda": "GxPkWQqERyLSw9N4PaytopmJWWVszjjnEtCcqc7wBLJ5",
-            "productStatePdaBump": 255,
-            "quotationStatePda": "GdnRVVuh2wSTY1F2kquYDajW65hphQh95yEyqJ8ZZTAe",
-            "quotationStatePdaBump": 252,
-            "individualPoolStatePda": "BozPoPNEquZVNX9zm4eVafoDP21pSoXPDLrBZKhsUphG",
-            "individualPoolStatePdaBump": 254,
-            "individualPoolLpAuwtMintAuthPda": "5V84gwH4i8jNuVjKE6cw54Qfq8ZkWhxa9jWsXyGDi2Hx",
-            "individualPoolLpAuwtMintAuthPdaBump": 253,
-            "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
-            "individualPoolLpAuwtMint": "879kp2dz9gFS1t8DC7Tjsb4CSZM51jvmWnmQNfdwFp1y",
-            "productPremiumStatePda": "GRUxUHh5Urn5LiP7LsZohaJvGL8hR2k5DwtJPRKBx88v",
-            "productPremiumStatePdaBump": 253
-        },
-        "2": {
-            "productStatePda": "2CUejYqCCV2yAjWWNHyARdZqoV3VemdveNx99TPxb8xb",
-            "productStatePdaBump": 255,
-            "quotationStatePda": "7wkoTZ13tWSMXaXnFBBP3giN41znPmofQZgwkccXQX1i",
-            "quotationStatePdaBump": 254,
-            "individualPoolStatePda": "31FkaSk4g9BjWDns9jc8j1KfxsTxamSDkQpmwjfb1q2u",
-            "individualPoolStatePdaBump": 254,
-            "individualPoolLpAuwtMintAuthPda": "6JptA56gJTqrWnGqcmPe9NsahmgASjkbF9eHvioGZAZE",
-            "individualPoolLpAuwtMintAuthPdaBump": 253,
-            "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
-            "individualPoolLpAuwtMint": "4CQu7Nv4j424RSU2CikcbdHupFbBEW9mCKHiZyDfkY7n",
-            "productPremiumStatePda": "FdjwzyaiVZ3mPMmsudZszkFWQG1cG2hxDy7pgtS4r6Wg",
-            "productPremiumStatePdaBump": 255
-        },
-        "3": {
-            "productStatePda": "9Mi3Z4Uq5iMtEV7rkuwutx84Pv8ZGbk1KGP2aZioJBi4",
-            "productStatePdaBump": 253,
-            "quotationStatePda": "4yoYF1zLu4fZd724JFoY29xU97ph5XyUhZ57fC5w8mxP",
-            "quotationStatePdaBump": 255,
-            "individualPoolStatePda": "7yTDz6ZjHZEiknCCvXnetgCcBJiEPLKShDNHpfpo6mtP",
-            "individualPoolStatePdaBump": 255,
-            "individualPoolLpAuwtMintAuthPda": "Gh21FWhzKesM1GmvJ6gGFzMAPLrTwc9ctskqTauseGR",
-            "individualPoolLpAuwtMintAuthPdaBump": 254,
-            "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
-            "individualPoolLpAuwtMint": "BKVBjdxDoSBarq3XAiDmABPsgGuAgLUrVsT7ZMLi2zpu",
-            "productPremiumStatePda": "44ZwTs9sho9ZLms72B8egYaLqXQtBPU5FaZJehW8Tmto",
-            "productPremiumStatePdaBump": 251
-        },
-        "4": {
-            "productStatePda": "641bZCSBzjxMLiafZuttYwreYcSpnxd5JoAgmDsn2CKt",
-            "productStatePdaBump": 255,
-            "quotationStatePda": "5bLvJs34BCkT1otodaFboU3wkMhcwR1i2GzRJKAoanBa",
-            "quotationStatePdaBump": 255,
-            "individualPoolStatePda": "BCzZJNQtCuKGfcYF92CqRnLzHHE7uTeAYXC6p18GoyF9",
-            "individualPoolStatePdaBump": 255,
-            "individualPoolLpAuwtMintAuthPda": "2VEhfHp1fvjU3114yYQJQnJDpAEChdwPn9BN8pMKXoK7",
-            "individualPoolLpAuwtMintAuthPdaBump": 254,
-            "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
-            "individualPoolLpAuwtMint": "CnTZfme66wsnHvrv94JebZBXfc9vqqGhngrdny7Z62u",
-            "productPremiumStatePda": "DZR7e9qZUkwNFX5U3JEFhmHwg5tSUDsT9TeQckv5aU6f",
-            "productPremiumStatePdaBump": 253
-        },
-        "5": {
-            "productStatePda": "71DanVvbccCJ4Z66CSDBtr8ZKZUChZh1FNVzoNnkgBYK",
-            "productStatePdaBump": 254,
-            "quotationStatePda": "C7bPi8vDBsUhywoKLse1SGf1S6jDj5G67TVjEgAkLPat",
-            "quotationStatePdaBump": 255,
-            "individualPoolStatePda": "BDgj9CNF2W77Ryqba8yPC7NsnYj8kE5CoH2LknCVW7x1",
-            "individualPoolStatePdaBump": 255,
-            "individualPoolLpAuwtMintAuthPda": "2nfd9QwA5dV9yMwFLme5EPDijNepKB6mNckGcz4yDcT4",
-            "individualPoolLpAuwtMintAuthPdaBump": 252,
-            "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
-            "individualPoolLpAuwtMint": "3RhGzaDYULRfSLWZAbpzFc4y8euBuoYSVbr13SZ8S9rF",
-            "productPremiumStatePda": "D9daWRt6DXTHPGdUYnEjnS4KdyGC9qtgNQcGsiTLCY8v",
-            "productPremiumStatePdaBump": 254
-        },
-        "6": {
-            "productStatePda": "BuqRo9zotDz5zgjqh6njW5sn8vHpoEBKz9vKcmrQGsAg",
-            "productStatePdaBump": 254,
-            "quotationStatePda": "5Ch1XgaorjJCd99vCjtRx1rajSvSZRZ5F7CPvLC2Xhah",
-            "quotationStatePdaBump": 254,
-            "individualPoolStatePda": "E4Ph5f41nbZaAC6gN5qfyGUDZpjA1co3yWpMGVbgFMyg",
-            "individualPoolStatePdaBump": 253,
-            "individualPoolLpAuwtMintAuthPda": "H9PyxyzXLUjZT9i4vFqvr7Tybbjgj1G4xJv42PecCTGT",
-            "individualPoolLpAuwtMintAuthPdaBump": 255,
-            "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
-            "individualPoolLpAuwtMint": "HGaf4RpCtzhF3iMgaDxCfH2GGqBsgfdfy35hhVtGGRGa",
-            "productPremiumStatePda": "Hy4bSnErbUCQzw5rhdaWN8vSLiA7yuaMWFXpzLhkPj9E",
-            "productPremiumStatePdaBump": 255
-        },
-        "7": {
-            "productStatePda": "9u411YcCyT6dQATZodTWu3mEGAKKGMCR8HbTM4x4FA6t",
-            "productStatePdaBump": 254,
-            "quotationStatePda": "8Sm2QSyTrEQG3rsnx5TSs9CJAbzrZg78HT7jSziVGV4u",
-            "quotationStatePdaBump": 255,
-            "individualPoolStatePda": "HnGvHSe6VwanSW1VeCGmNUU7aaSvTwKzA7tnGGU2w5zx",
-            "individualPoolStatePdaBump": 255,
-            "individualPoolLpAuwtMintAuthPda": "DJ8FwLT2YWTz9MymauGWqgBcumfd4Bn39sChPWMwo4dD",
-            "individualPoolLpAuwtMintAuthPdaBump": 254,
-            "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
-            "individualPoolLpAuwtMint": "C8WAEHnHA5jgQGh1uoEkjVxxD88Y7njhcsMX2YuB5FUe",
-            "productPremiumStatePda": "8f4ciJwyqyKHMHur5CCK4cmiXG3Mq9UaKVKJ3JR4oc2E",
-            "productPremiumStatePdaBump": 254
-        },
-        "8": {
-            "productStatePda": "AFxwJqt3KZm4hb6YAt84XtFDvU5BgSz5JfESDLEooYPp",
-            "productStatePdaBump": 255,
-            "quotationStatePda": "mmYuVCgohhSAgDyWQ5HN5qTriCe7iefw383YHQ2iYqM",
-            "quotationStatePdaBump": 254,
-            "individualPoolStatePda": "2R2xCZPUQ9bFpkC67dX3wjRQpnmFhvvWTRAXRSS99M3Q",
-            "individualPoolStatePdaBump": 251,
-            "individualPoolLpAuwtMintAuthPda": "CMFWNhkHsxv4D8QHxdpt5QrtZh55t2c6diD5mPrA14qj",
-            "individualPoolLpAuwtMintAuthPdaBump": 254,
-            "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
-            "individualPoolLpAuwtMint": "8WjXqnQDZt6cnEE7yuTKKzF3CdraEnGt4bHRKB8YfrPK",
-            "productPremiumStatePda": "AE8pnxDtP3HJWgQTBGaueFwJwGqBAkgsLMQq5aFoYb7E",
-            "productPremiumStatePdaBump": 255
-        },
-        "9": {
-            "productStatePda": "JXfQYXvVigHe33JEa5jHa16yRfYMjHSCU9gzsZGyk1N",
-            "productStatePdaBump": 255,
-            "quotationStatePda": "82a68NRFCN8GqbZaF19WMucPce8cj7NyFSs3BXpZDNDG",
-            "quotationStatePdaBump": 254,
-            "individualPoolStatePda": "nSPe31Lo1TdMV9oBwpbRx3Fv6uuMLsVxSxV889W3vLx",
-            "individualPoolStatePdaBump": 255,
-            "individualPoolLpAuwtMintAuthPda": "4ZbzL43ZceuUk3TAcidchyQfqvcQvjPgi2cWVaJ8JzK8",
-            "individualPoolLpAuwtMintAuthPdaBump": 255,
-            "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
-            "individualPoolLpAuwtMint": "HEEeN3FUdMPUFZukyy1K4k1cDxpLmUajAUEz26qodFRH",
-            "productPremiumStatePda": "AzTmSmgs7oWYKghZMjoXAvDXsE9S1N5rFSLLv7qhFjuY",
-            "productPremiumStatePdaBump": 252
-        }
+      "1": {
+        "productStatePda": "GxPkWQqERyLSw9N4PaytopmJWWVszjjnEtCcqc7wBLJ5",
+        "quotationStatePda": "GdnRVVuh2wSTY1F2kquYDajW65hphQh95yEyqJ8ZZTAe",
+        "individualPoolStatePda": "BozPoPNEquZVNX9zm4eVafoDP21pSoXPDLrBZKhsUphG",
+        "individualPoolLpAuwtMintAuthPda": "5V84gwH4i8jNuVjKE6cw54Qfq8ZkWhxa9jWsXyGDi2Hx",
+        "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
+        "individualPoolLpAuwtMint": "879kp2dz9gFS1t8DC7Tjsb4CSZM51jvmWnmQNfdwFp1y",
+        "productPremiumStatePda": "GRUxUHh5Urn5LiP7LsZohaJvGL8hR2k5DwtJPRKBx88v"
+      },
+      "2": {
+        "productStatePda": "2CUejYqCCV2yAjWWNHyARdZqoV3VemdveNx99TPxb8xb",
+        "quotationStatePda": "7wkoTZ13tWSMXaXnFBBP3giN41znPmofQZgwkccXQX1i",
+        "individualPoolStatePda": "31FkaSk4g9BjWDns9jc8j1KfxsTxamSDkQpmwjfb1q2u",
+        "individualPoolLpAuwtMintAuthPda": "6JptA56gJTqrWnGqcmPe9NsahmgASjkbF9eHvioGZAZE",
+        "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
+        "individualPoolLpAuwtMint": "4CQu7Nv4j424RSU2CikcbdHupFbBEW9mCKHiZyDfkY7n",
+        "productPremiumStatePda": "FdjwzyaiVZ3mPMmsudZszkFWQG1cG2hxDy7pgtS4r6Wg"
+      },
+      "3": {
+        "productStatePda": "9Mi3Z4Uq5iMtEV7rkuwutx84Pv8ZGbk1KGP2aZioJBi4",
+        "quotationStatePda": "4yoYF1zLu4fZd724JFoY29xU97ph5XyUhZ57fC5w8mxP",
+        "individualPoolStatePda": "7yTDz6ZjHZEiknCCvXnetgCcBJiEPLKShDNHpfpo6mtP",
+        "individualPoolLpAuwtMintAuthPda": "Gh21FWhzKesM1GmvJ6gGFzMAPLrTwc9ctskqTauseGR",
+        "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
+        "individualPoolLpAuwtMint": "BKVBjdxDoSBarq3XAiDmABPsgGuAgLUrVsT7ZMLi2zpu",
+        "productPremiumStatePda": "44ZwTs9sho9ZLms72B8egYaLqXQtBPU5FaZJehW8Tmto"
+      },
+      "4": {
+        "productStatePda": "641bZCSBzjxMLiafZuttYwreYcSpnxd5JoAgmDsn2CKt",
+        "quotationStatePda": "5bLvJs34BCkT1otodaFboU3wkMhcwR1i2GzRJKAoanBa",
+        "individualPoolStatePda": "BCzZJNQtCuKGfcYF92CqRnLzHHE7uTeAYXC6p18GoyF9",
+        "individualPoolLpAuwtMintAuthPda": "2VEhfHp1fvjU3114yYQJQnJDpAEChdwPn9BN8pMKXoK7",
+        "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
+        "individualPoolLpAuwtMint": "CnTZfme66wsnHvrv94JebZBXfc9vqqGhngrdny7Z62u",
+        "productPremiumStatePda": "DZR7e9qZUkwNFX5U3JEFhmHwg5tSUDsT9TeQckv5aU6f"
+      },
+      "5": {
+        "productStatePda": "71DanVvbccCJ4Z66CSDBtr8ZKZUChZh1FNVzoNnkgBYK",
+        "quotationStatePda": "C7bPi8vDBsUhywoKLse1SGf1S6jDj5G67TVjEgAkLPat",
+        "individualPoolStatePda": "BDgj9CNF2W77Ryqba8yPC7NsnYj8kE5CoH2LknCVW7x1",
+        "individualPoolLpAuwtMintAuthPda": "2nfd9QwA5dV9yMwFLme5EPDijNepKB6mNckGcz4yDcT4",
+        "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
+        "individualPoolLpAuwtMint": "3RhGzaDYULRfSLWZAbpzFc4y8euBuoYSVbr13SZ8S9rF",
+        "productPremiumStatePda": "D9daWRt6DXTHPGdUYnEjnS4KdyGC9qtgNQcGsiTLCY8v"
+      },
+      "6": {
+        "productStatePda": "BuqRo9zotDz5zgjqh6njW5sn8vHpoEBKz9vKcmrQGsAg",
+        "quotationStatePda": "5Ch1XgaorjJCd99vCjtRx1rajSvSZRZ5F7CPvLC2Xhah",
+        "individualPoolStatePda": "E4Ph5f41nbZaAC6gN5qfyGUDZpjA1co3yWpMGVbgFMyg",
+        "individualPoolLpAuwtMintAuthPda": "H9PyxyzXLUjZT9i4vFqvr7Tybbjgj1G4xJv42PecCTGT",
+        "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
+        "individualPoolLpAuwtMint": "HGaf4RpCtzhF3iMgaDxCfH2GGqBsgfdfy35hhVtGGRGa",
+        "productPremiumStatePda": "Hy4bSnErbUCQzw5rhdaWN8vSLiA7yuaMWFXpzLhkPj9E"
+      },
+      "7": {
+        "productStatePda": "9u411YcCyT6dQATZodTWu3mEGAKKGMCR8HbTM4x4FA6t",
+        "quotationStatePda": "8Sm2QSyTrEQG3rsnx5TSs9CJAbzrZg78HT7jSziVGV4u",
+        "individualPoolStatePda": "HnGvHSe6VwanSW1VeCGmNUU7aaSvTwKzA7tnGGU2w5zx",
+        "individualPoolLpAuwtMintAuthPda": "DJ8FwLT2YWTz9MymauGWqgBcumfd4Bn39sChPWMwo4dD",
+        "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
+        "individualPoolLpAuwtMint": "C8WAEHnHA5jgQGh1uoEkjVxxD88Y7njhcsMX2YuB5FUe",
+        "productPremiumStatePda": "8f4ciJwyqyKHMHur5CCK4cmiXG3Mq9UaKVKJ3JR4oc2E"
+      },
+      "8": {
+        "productStatePda": "AFxwJqt3KZm4hb6YAt84XtFDvU5BgSz5JfESDLEooYPp",
+        "quotationStatePda": "mmYuVCgohhSAgDyWQ5HN5qTriCe7iefw383YHQ2iYqM",
+        "individualPoolStatePda": "2R2xCZPUQ9bFpkC67dX3wjRQpnmFhvvWTRAXRSS99M3Q",
+        "individualPoolLpAuwtMintAuthPda": "CMFWNhkHsxv4D8QHxdpt5QrtZh55t2c6diD5mPrA14qj",
+        "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
+        "individualPoolLpAuwtMint": "8WjXqnQDZt6cnEE7yuTKKzF3CdraEnGt4bHRKB8YfrPK",
+        "productPremiumStatePda": "AE8pnxDtP3HJWgQTBGaueFwJwGqBAkgsLMQq5aFoYb7E"
+      },
+      "9": {
+        "productStatePda": "JXfQYXvVigHe33JEa5jHa16yRfYMjHSCU9gzsZGyk1N",
+        "quotationStatePda": "82a68NRFCN8GqbZaF19WMucPce8cj7NyFSs3BXpZDNDG",
+        "individualPoolStatePda": "nSPe31Lo1TdMV9oBwpbRx3Fv6uuMLsVxSxV889W3vLx",
+        "individualPoolLpAuwtMintAuthPda": "4ZbzL43ZceuUk3TAcidchyQfqvcQvjPgi2cWVaJ8JzK8",
+        "individualPoolAuwtTokenAccount": "FASWeuNoT5thYWuQ6GoaWQH2bgDe6TcQ9C9EZzqeMQ7p",
+        "individualPoolLpAuwtMint": "HEEeN3FUdMPUFZukyy1K4k1cDxpLmUajAUEz26qodFRH",
+        "productPremiumStatePda": "AzTmSmgs7oWYKghZMjoXAvDXsE9S1N5rFSLLv7qhFjuY"
+      }
     },
-    "programInitializerAuth": "HCJ9m9EZetEvaM1mjF3bXNFXMRym7WXw7vWuw6ikJy7v",
     "solStakingMetadataState": "CU8evCf6ze2m49pDTUaprAj1B8i1oRgTuzzRJgNgdC46",
-    "programAdminAuth": "G5nELQ7Au8C3W6cXuoATKSEPrPyevVmWkLgvedeqJE5s",
     "programPosSolPda": "9thydVSgB6XpNYopj5zXtpsqWXPAyNAGegqURWFGUdje",
     "programAuthPda": "4rEtNU1YiRmctjPpktpiVtf7BTxPFV7hiiTqvfofpbmg",
     "amtsolMint": "CFjEuT1RpFfoQ1KmKeEArmGCZEatNcydJPLnvHMgYaER",
     "programLiqSolPda": "K8BD9DitWXsJ4onnDQq75R4y2PtCecCRFtkrUqxtPeA",
-    "lpSolAmtsolMint": "L87gJDV3WeYpddDBsJYR5J646PURGm8erJSwHo5zQpT",
     "programLiqAmtsol": "3NMogCt7LrwaWKjKMiVtgU3AWYeZzVjMsmZmYkqzXdRT",
-    "AmuletSolStaking": "GWTM1zESSDhKQLx5V86F84RQnNnzsY5t2qQLU37qymqK",
-    "programPosState": "5vDnSDPcnXZAx3ZXtmcmishVeswF6Wy3GEjEe7HLUJtG",
-    "operationAccount": "Hn6EFsvE7CDxjQDFm32CZbRRcy61BkUSwoaqZGpT1RPt",
-    "validatorManagerAuth": "2a3tGW33hGeYP9oZiPH2tAuB8WYXbkvuKwSMeGCHVtoe",
-    "validatorListAccount": "9zeTRaj5VpA4a7opHynnhwubmvtBRRtYSQQw7enr3rsd",
-    "posStakeDepositPda": "FeeeL2VztqpGiXJMYKHyJMXYAM2Bg2i4pzr9hfpkHguZ",
-    "posStakeWithdrawPda": "HMVxHCv9V33rUrShUtJHrJ9PFVf7fskjdsypJa88uuqD",
-    "posStakeListAccount": "BPgaRwL7Ww24uqg8v3wk9grKLToXWXjhu12Sw3Z3io7f",
-    "nftCollections": {
-        "1": {
-            "collectionName": "Amulet Metabears Basic",
-            "collectionMint": "2VXjU7RtqLgV9XraSByRkM3stFRrUKVHfwJUy5Tx4oS5",
-            "coverDiscountPctg": 500
-        },
-        "2": {
-            "collectionName": "Amulet Metabears Elite",
-            "collectionMint": "8CefFaJYcBYiohV1gKfQip21fWTz5cLAnzDXTQtvXSQN",
-            "coverDiscountPctg": 700
-        },
-        "3": {
-            "collectionName": "Amulet Metabears Pro",
-            "collectionMint": "A5XZzDrXAHLU9SFLSeen4h5jJYkJU5Yhdvv4bCMfcMh5",
-            "coverDiscountPctg": 1000
-        }
-    }
-}
+    "programPosState": "5vDnSDPcnXZAx3ZXtmcmishVeswF6Wy3GEjEe7HLUJtG"
+  }
