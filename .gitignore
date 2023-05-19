@@ -15,3 +15,5 @@
 
 # Test configuration.
 .env.test
+
+.npmrc

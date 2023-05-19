@@ -1,5 +1,5 @@
 {
-  "name": "@amulet/sdk",
+  "name": "@amulet.org/sdk",
   "license": "GPL-3.0-or-later",
   "version": "1.0.0",
   "main": "dist/index.js",
@@ -15,7 +15,7 @@
     "docs": "typedoc --exclude src/entity/AddressConfig.ts --exclude src/entity/AddressConfigRaw.ts --exclude src/entity/Simulation.ts --exclude src/entity/Token.ts --exclude src/entity/SendTransactionParam.ts src/index.ts"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/amulet"
+    "registry": "https://registry.npmjs.org"
   },
   "repository": {
     "type": "git",
