@@ -15,7 +15,7 @@
     "docs": "typedoc --exclude src/entity/AddressConfig.ts --exclude src/entity/AddressConfigRaw.ts --exclude src/entity/Simulation.ts --exclude src/entity/Token.ts --exclude src/entity/SendTransactionParam.ts src/index.ts"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/amulet"
+    "registry": "https://registry.npmjs.org/amulet"
   },
   "repository": {
     "type": "git",
