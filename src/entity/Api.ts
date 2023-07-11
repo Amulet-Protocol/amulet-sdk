@@ -1,14 +1,23 @@
-import type { BN } from '@project-serum/anchor';
-import type { PublicKey, Signer, Transaction } from '@solana/web3.js';
+import type { BN } from '@coral-xyz/anchor';
+import type { PublicKey, Signer, TransactionInstruction, VersionedTransaction } from '@solana/web3.js';
 
 /**
- * @property transaction The transaction object.
+ * @property lookupTables The transaction lookup tables.
+ * @property instructions The transaction instructions.
  * @property signers The transaction signers.
  * @interface
  */
 export type CreateTransactionResult = {
-  transaction: Transaction;
+  lookupTables: PublicKey[];
+  instructions: TransactionInstruction[];
   signers: Signer[];
+};
+
+export type CreateV0TransactionResult = {
+  versionedTransaction: VersionedTransaction;
+  slot: number;
+  blockhash: string;
+  lastValidBlockHeight: number;
 };
 
 /**

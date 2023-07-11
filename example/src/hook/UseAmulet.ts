@@ -1,4 +1,4 @@
-import { Amulet, Mode } from '@amulet/sdk';
+import { Amulet, Mode } from '@amulet.org/sdk';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { useConnection } from '@solana/wallet-adapter-react';
 import { useMemo } from 'react';

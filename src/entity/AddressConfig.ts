@@ -3,6 +3,7 @@ import type { MetaProgramsRawAddress } from './AddressConfigRaw';
 import { PublicKey } from '@solana/web3.js';
 
 export type AddressConfig = {
+  readonly lookup: PublicKey;
   readonly amtsol: {
     readonly mint: PublicKey;
   };
@@ -77,6 +78,7 @@ export type AddressConfig = {
 };
 
 export const DEFAULT_ADDRESS_CONFIG: AddressConfig = {
+  lookup: PublicKey.default,
   amtsol: {
     mint: PublicKey.default,
   },
@@ -134,6 +136,7 @@ export function extractAddress(
   addressMeta: MetaProgramsRawAddress,
 ): AddressConfig {
   return {
+    lookup: new PublicKey(addressMeta.lookupTable),
     amtsol: {
       mint: new PublicKey(addressMeta.token.amtsolMint),
     },

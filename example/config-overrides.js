@@ -6,6 +6,7 @@ module.exports = {
     config.plugins = (config.plugins || []).concat([
       new NodePolyfillPlugin({
         includeAliases: [
+          'Buffer',
           'crypto',
           'stream',
         ],

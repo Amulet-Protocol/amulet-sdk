@@ -1,4 +1,4 @@
-import type { Signer, Transaction } from '@solana/web3.js';
+import type { CreateV0TransactionResult } from '@amulet.org/sdk';
 
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { useCallback } from 'react';
@@ -7,19 +7,15 @@ export function useBlockchain() {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
 
-  // Adapted from https://github.com/solana-labs/wallet-adapter/blob/master/APP.md page.
-  const sendAndConfirmTransaction = useCallback(async (transaction: Transaction, signers: Signer[]) => {
-    const { context, value } = await connection.getLatestBlockhashAndContext();
-
-    const signature = await sendTransaction(transaction, connection, {
-      minContextSlot: context.slot,
-      signers,
+  const sendAndConfirmTransaction = useCallback(async (result: CreateV0TransactionResult) => {
+    const signature = await sendTransaction(result.versionedTransaction, connection, {
+      minContextSlot: result.slot,
     });
 
     await connection.confirmTransaction({
       signature,
-      blockhash: value.blockhash,
-      lastValidBlockHeight: value.lastValidBlockHeight,
+      blockhash: result.blockhash,
+      lastValidBlockHeight: result.lastValidBlockHeight,
     });
 
     return signature;

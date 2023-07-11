@@ -1,4 +1,4 @@
-import type { BN } from '@project-serum/anchor';
+import type { BN } from '@coral-xyz/anchor';
 import type { Connection } from '@solana/web3.js';
 import type { AddressConfig } from '../entity';
 import type { CoverMetadataState } from '../program/CoverEntity';

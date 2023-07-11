@@ -14,9 +14,9 @@ describe('stakeSolForAuwt', function() {
   };
 
   it('pass', async function() {
-    const { transaction } = await amulet.stakeSolForAuwt(param);
+    const { instructions } = await amulet.stakeSolForAuwt(param);
 
-    assert.isAtLeast(transaction.instructions.length, 1);
+    assert.isAtLeast(instructions.length, 1);
   });
 
   it('coverAmount: zero BN', async function() {

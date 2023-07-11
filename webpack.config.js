@@ -13,7 +13,7 @@ module.exports = {
     },
     clean: true, // Clean the output directory before emit.
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   plugins: [
     // Polyfill Node.js modules.
     new NodePolyfillPlugin({

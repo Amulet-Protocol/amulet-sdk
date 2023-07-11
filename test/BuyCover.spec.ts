@@ -19,9 +19,9 @@ describe('buyCover', function() {
   };
 
   it('pass', async function() {
-    const { transaction } = await amulet.buyCover(param);
+    const { instructions } = await amulet.buyCover(param);
 
-    assert.isAtLeast(transaction.instructions.length, 1);
+    assert.isAtLeast(instructions.length, 1);
   });
 
   it('productId: zero', async function() {

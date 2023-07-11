@@ -1,4 +1,4 @@
-import type { Idl } from '@project-serum/anchor';
+import type { Idl } from '@coral-xyz/anchor';
 
 import Cover from '../idl/cover.json';
 import Pool from '../idl/pool.json';

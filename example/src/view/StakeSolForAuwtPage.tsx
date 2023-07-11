@@ -1,10 +1,10 @@
-import { BN } from '@amulet/sdk';
+import { BN, createV0Transaction } from '@amulet.org/sdk';
 import { useCallback, useMemo, useState } from 'react';
 import { useAmulet, useBlockchain } from '../hook';
 
 export default function StakeSolForAuwtPage() {
   const { amulet } = useAmulet();
-  const { publicKey, sendAndConfirmTransaction } = useBlockchain();
+  const { connection, publicKey, sendAndConfirmTransaction } = useBlockchain();
 
   const [loading, setLoading] = useState(false);
   const [signature, setSignature] = useState('');
@@ -27,12 +27,14 @@ export default function StakeSolForAuwtPage() {
     setLoading(true);
 
     try {
-      const { transaction, signers } = await amulet.stakeSolForAuwt({
+      const param = await amulet.stakeSolForAuwt({
         staker: publicKey,
         stakeAmount,
       });
 
-      const result = await sendAndConfirmTransaction(transaction, signers);
+      const paramV0 = await createV0Transaction(connection, publicKey, param);
+
+      const result = await sendAndConfirmTransaction(paramV0);
 
       setSignature(result);
     } catch (e) {
@@ -42,7 +44,7 @@ export default function StakeSolForAuwtPage() {
     }
 
     setLoading(false);
-  }, [amulet, publicKey, sendAndConfirmTransaction, stakeAmount]);
+  }, [amulet, connection, publicKey, sendAndConfirmTransaction, stakeAmount]);
 
   return (
     <div>
