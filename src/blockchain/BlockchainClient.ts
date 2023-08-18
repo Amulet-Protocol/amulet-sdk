@@ -2,7 +2,7 @@ import type { Connection, Signer } from '@solana/web3.js';
 import type { AddressConfig } from '../entity';
 import type * as api from '../entity/Api';
 
-import { BN } from '@project-serum/anchor';
+import { BN } from '@coral-xyz/anchor';
 import { Keypair, PublicKey } from '@solana/web3.js';
 import { AmuletError, SendTransactionParam } from '../entity';
 import { findAta, findPda, getOrCreateAta, setComputeBudgetInstruction } from './BlockchainUtil';
@@ -70,7 +70,7 @@ export class BlockchainClient {
       },
     }).instruction();
 
-    return new SendTransactionParam()
+    return new SendTransactionParam(this.address.lookup)
       .mergeTx(setComputeBudgetInstruction(400000))
       .mergeTx(instruction);
   }
@@ -123,7 +123,7 @@ export class BlockchainClient {
       },
     }).instruction();
 
-    return new SendTransactionParam()
+    return new SendTransactionParam(this.address.lookup)
       .mergeTx(setComputeBudgetInstruction(400000))
       .mergeTx(instruction, [tempAmtsolTaKeypair]);
   }
@@ -162,7 +162,7 @@ export class BlockchainClient {
       },
     }).instruction();
 
-    return new SendTransactionParam(instruction, [ticketAccount]);
+    return new SendTransactionParam(this.address.lookup, instruction, [ticketAccount]);
   }
 
   public async ticketAccountWithdraw(param: api.WithdrawTicketAccountParam & {
@@ -191,7 +191,7 @@ export class BlockchainClient {
       },
     }).instruction();
 
-    return new SendTransactionParam()
+    return new SendTransactionParam(this.address.lookup)
       .merge(paramAtaSpl)
       .mergeTx(instruction);
   }

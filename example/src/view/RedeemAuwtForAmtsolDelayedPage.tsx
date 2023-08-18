@@ -1,10 +1,10 @@
-import { BN } from '@amulet/sdk';
+import { BN, createV0Transaction } from '@amulet.org/sdk';
 import { useCallback, useMemo, useState } from 'react';
 import { useAmulet, useBlockchain } from '../hook';
 
 export default function RedeemAuwtForAmtsolDelayedPage() {
   const { amulet } = useAmulet();
-  const { publicKey, sendAndConfirmTransaction } = useBlockchain();
+  const { connection, publicKey, sendAndConfirmTransaction } = useBlockchain();
 
   const [loading, setLoading] = useState(false);
   const [signature, setSignature] = useState('');
@@ -29,15 +29,17 @@ export default function RedeemAuwtForAmtsolDelayedPage() {
     setLoading(true);
 
     try {
-      const { transaction, signers, ticketAccount } = await amulet.redeemAuwtForAmtsolDelayed({
+      const param = await amulet.redeemAuwtForAmtsolDelayed({
         staker: publicKey,
         redeemAmount,
       });
 
-      const result = await sendAndConfirmTransaction(transaction, signers);
+      const paramV0 = await createV0Transaction(connection, publicKey, param);
+
+      const result = await sendAndConfirmTransaction(paramV0);
 
       setSignature(result);
-      setTicket(ticketAccount.toString());
+      setTicket(param.ticketAccount.toString());
     } catch (e) {
       const err = amulet.errorParser.parseBuyCoverError(e);
 
@@ -45,7 +47,7 @@ export default function RedeemAuwtForAmtsolDelayedPage() {
     }
 
     setLoading(false);
-  }, [amulet, publicKey, sendAndConfirmTransaction, redeemAmount]);
+  }, [amulet, connection, publicKey, sendAndConfirmTransaction, redeemAmount]);
 
   return (
     <div>

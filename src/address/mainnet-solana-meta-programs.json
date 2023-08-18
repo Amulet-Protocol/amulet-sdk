@@ -163,5 +163,6 @@
     "amtsolMint": "SoLW9muuNQmEAoBws7CWfYQnXRXMVEG12cQhy6LE2Zf",
     "programLiqSolPda": "CMPTLLXg7T9kqY7ZR8gccGFMXzCdGp2jNqeG91yTsbZv",
     "programLiqAmtsol": "14fx6JmWpXXUZsmobLXmf9hVkcqKuXytQxdzvBHGAm71",
-    "programPosState": "CaxYodGBcen2MVPSM1SKdAMHC2csnPSvLAZu2vkVT1H2"
+    "programPosState": "CaxYodGBcen2MVPSM1SKdAMHC2csnPSvLAZu2vkVT1H2",
+    "lookupTable": "CQp2kMBMu5qCjBXgktz6BG6yybtQF1hX2pdAw51sc9Jx"
   }

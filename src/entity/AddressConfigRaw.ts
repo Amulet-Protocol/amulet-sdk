@@ -53,4 +53,5 @@ export type MetaProgramsRawAddress = {
       individualPoolAuwtTokenAccount: string;
     };
   };
+  lookupTable: string;
 };

@@ -1,48 +1,41 @@
-import type { Signer, TransactionInstruction } from '@solana/web3.js';
-
-import { Transaction } from '@solana/web3.js';
+import type { PublicKey, Signer, TransactionInstruction } from '@solana/web3.js';
 
 export class SendTransactionParam {
-  public readonly transaction: Transaction;
+  public readonly lookupTables: PublicKey[];
+  public readonly instructions: TransactionInstruction[];
   public readonly signers: Signer[];
 
-  public constructor(tx?: Transaction | TransactionInstruction | null | undefined, signers?: Signer[]) {
-    this.transaction = new Transaction();
-
-    if (tx != null) {
-      this.transaction.add(tx);
-    }
-
+  public constructor(
+    lookupTables: PublicKey[] | PublicKey,
+    instructions?: TransactionInstruction[] | TransactionInstruction,
+    signers?: Signer[],
+  ) {
+    this.lookupTables = Array.isArray(lookupTables) ? lookupTables : [lookupTables];
+    this.instructions = Array.isArray(instructions)
+      ? instructions
+      : (instructions == null) ? [] : [instructions];
     this.signers = signers ?? [];
   }
 
   public merge(other: SendTransactionParam | null | undefined): SendTransactionParam {
-    const newTx = new Transaction().add(this.transaction);
-
-    if (other != null) {
-      newTx.add(other.transaction);
-    }
-
+    const newLookupTables = this.lookupTables.concat(other?.lookupTables ?? []);
+    const newInstructions = this.instructions.concat(other?.instructions ?? []);
     const newSigners = this.signers.concat(other?.signers ?? []);
 
-    return new SendTransactionParam(newTx, newSigners);
+    return new SendTransactionParam(newLookupTables, newInstructions, newSigners);
   }
 
-  public mergeTx(tx: Transaction | TransactionInstruction | null | undefined, signers?: Signer[]): SendTransactionParam {
-    const newTx = new Transaction().add(this.transaction);
-
-    if (tx != null) {
-      newTx.add(tx);
-    }
-
+  public mergeTx(instruction: TransactionInstruction, signers?: Signer[]): SendTransactionParam {
+    const newInstructions = this.instructions.concat(instruction);
     const newSigners = this.signers.concat(signers ?? []);
 
-    return new SendTransactionParam(newTx, newSigners);
+    return new SendTransactionParam(this.lookupTables, newInstructions, newSigners);
   }
 
   public toObject() {
     return {
-      transaction: this.transaction,
+      lookupTables: this.lookupTables,
+      instructions: this.instructions,
       signers: this.signers,
     };
   }

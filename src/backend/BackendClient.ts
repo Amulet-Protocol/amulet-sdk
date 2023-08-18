@@ -1,7 +1,7 @@
 import type { GetPremiumParam, SimulationParam, SimulationResult } from '../entity';
 import type { GetPremiumData, SimulateData } from './BackendClientType';
 
-import { BN } from '@project-serum/anchor';
+import { BN } from '@coral-xyz/anchor';
 import { HttpClient } from '../http';
 
 export type BackendClientConfig = {

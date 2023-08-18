@@ -1,7 +1,7 @@
-import type { Idl } from '@project-serum/anchor';
+import type { Idl } from '@coral-xyz/anchor';
 import type { AccountInfo, Connection, TransactionInstruction } from '@solana/web3.js';
 
-import { BorshCoder, utils } from '@project-serum/anchor';
+import { BorshCoder, utils } from '@coral-xyz/anchor';
 import * as SplToken from '@solana/spl-token';
 import { ComputeBudgetProgram, PublicKey } from '@solana/web3.js';
 import { AmuletError, SendTransactionParam } from '../entity';
@@ -63,7 +63,7 @@ export async function getOrCreateAta(
   } catch (error) { // The associated token account does not exist.
     const instruction = createAtaInstruction(tokenMintAddress, wallet, ata);
 
-    return [ata, new SendTransactionParam(instruction)];
+    return [ata, new SendTransactionParam([], instruction)];
   }
 }
 

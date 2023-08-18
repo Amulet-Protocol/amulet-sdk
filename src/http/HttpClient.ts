@@ -2,6 +2,8 @@ import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import axios from 'axios';
 
+export type RequestConfig<T> = AxiosRequestConfig<T>;
+
 export type HttpClientConfig = {
   url: string;
   params: {
@@ -16,25 +18,25 @@ export class HttpClient {
     this.config = config;
   }
 
-  public async get<Response>(relativeUrl: string, option = {} as AxiosRequestConfig<void>): Promise<Response> {
-    const { data } = await axios.get<Response, AxiosResponse<Response, void>, void>(this.config.url + relativeUrl, this.augmentOption(option));
+  public async get<ResponseData, RequestData = unknown>(relativeUrl: string, option = {} as RequestConfig<RequestData>): Promise<ResponseData> {
+    const { data } = await axios.get<ResponseData, AxiosResponse<ResponseData, RequestData>, RequestData>(this.config.url + relativeUrl, this.augmentOption(option));
 
     return data;
   }
 
-  public async post<Response, Request>(relativeUrl: string, body: Request, option = {} as AxiosRequestConfig<Request>): Promise<Response> {
-    const { data } = await axios.post<Response, AxiosResponse<Response, Request>, Request>(this.config.url + relativeUrl, body, this.augmentOption(option));
+  public async post<ResponseData, RequestData = unknown>(relativeUrl: string, body: RequestData, option = {} as RequestConfig<RequestData>): Promise<ResponseData> {
+    const { data } = await axios.post<ResponseData, AxiosResponse<ResponseData, RequestData>, RequestData>(this.config.url + relativeUrl, body, this.augmentOption(option));
 
     return data;
   }
 
-  public async delete<Response>(relativeUrl: string, option = {} as AxiosRequestConfig<void>): Promise<Response> {
-    const { data } = await axios.delete<Response, AxiosResponse<Response, void>, void>(this.config.url + relativeUrl, this.augmentOption(option));
+  public async delete<ResponseData, RequestData = unknown>(relativeUrl: string, option = {} as RequestConfig<RequestData>): Promise<ResponseData> {
+    const { data } = await axios.delete<ResponseData, AxiosResponse<ResponseData, RequestData>, RequestData>(this.config.url + relativeUrl, this.augmentOption(option));
 
     return data;
   }
 
-  private augmentOption<T>(option: AxiosRequestConfig<T>): AxiosRequestConfig<T> {
+  private augmentOption<T>(option: RequestConfig<T>): RequestConfig<T> {
     return {
       ...option,
       params: {

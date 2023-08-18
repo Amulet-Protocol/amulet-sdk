@@ -1,10 +1,11 @@
+import { createV0Transaction } from '@amulet.org/sdk';
 import { PublicKey } from '@solana/web3.js';
 import { useCallback, useState } from 'react';
 import { useAmulet, useBlockchain } from '../hook';
 
 export default function WithdrawAmtsolTicketAccountPage() {
   const { amulet } = useAmulet();
-  const { publicKey, sendAndConfirmTransaction } = useBlockchain();
+  const { connection, publicKey, sendAndConfirmTransaction } = useBlockchain();
 
   const [loading, setLoading] = useState(false);
   const [signature, setSignature] = useState('');
@@ -23,12 +24,14 @@ export default function WithdrawAmtsolTicketAccountPage() {
     setLoading(true);
 
     try {
-      const { transaction, signers } = await amulet.withdrawAmtsolTicketAccount({
+      const param = await amulet.withdrawAmtsolTicketAccount({
         staker: publicKey,
         ticketAccount: new PublicKey(inputTicket),
       });
 
-      const result = await sendAndConfirmTransaction(transaction, signers);
+      const paramV0 = await createV0Transaction(connection, publicKey, param);
+
+      const result = await sendAndConfirmTransaction(paramV0);
 
       setSignature(result);
     } catch (e) {
@@ -38,7 +41,7 @@ export default function WithdrawAmtsolTicketAccountPage() {
     }
 
     setLoading(false);
-  }, [amulet, publicKey, sendAndConfirmTransaction, inputTicket]);
+  }, [amulet, connection, publicKey, sendAndConfirmTransaction, inputTicket]);
 
   return (
     <div>

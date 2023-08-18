@@ -14,9 +14,9 @@ describe('redeemAuwtForAmtsolDelayed', function() {
   };
 
   it('pass', async function() {
-    const { transaction, ticketAccount } = await amulet.redeemAuwtForAmtsolDelayed(param);
+    const { instructions, ticketAccount } = await amulet.redeemAuwtForAmtsolDelayed(param);
 
-    assert.isAtLeast(transaction.instructions.length, 1);
+    assert.isAtLeast(instructions.length, 1);
     assert.isFalse(ticketAccount.equals(PublicKey.default));
   });
 

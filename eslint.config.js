@@ -44,7 +44,6 @@ module.exports = [
       'keyword-spacing': ['error', { before: true, after: true }],
       'no-console': 'error',
       'no-debugger': 'error',
-      'no-duplicate-imports': 'error',
       'no-floating-decimal': 'error',
       'no-implicit-coercion': 'error',
       'no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 0 }],
@@ -93,24 +92,21 @@ module.exports = [
       },
       parser: typescriptEslintParser,
       parserOptions: {
-        project: [
-          './tsconfig.json',
-        ],
+        project: true,
       },
     },
     plugins: {
       '@typescript-eslint': typescriptEslint,
     },
     rules: {
-      ...typescriptEslint.configs['recommended'].rules,
-      ...typescriptEslint.configs['recommended-requiring-type-checking'].rules,
+      ...typescriptEslint.configs['strict-type-checked'].rules,
+      ...typescriptEslint.configs['stylistic-type-checked'].rules,
       'brace-style': 'off', // Disable base rule for @typescript-eslint/brace-style.
       'comma-dangle': 'off', // Disable base rule for @typescript-eslint/comma-dangle
       'comma-spacing': 'off', // Disable base rule for @typescript-eslint/comma-spacing.
       'func-call-spacing': 'off', // Disable base rule for @typescript-eslint/func-call-spacing.
       'indent': 'off', // Disable base rule for @typescript-eslint/indent.
       'keyword-spacing': 'off', // Disable base rule for @typescript-eslint/keyword-spacing.
-      'no-duplicate-imports': 'off', // Disable base rule for @typescript-eslint/no-duplicate-imports.
       'no-shadow': 'off', // Disable base rule for @typescript-eslint/no-shadow.
       'no-unused-vars': 'off', // Disable base rule for @typescript-eslint/no-unused-vars.
       'padding-line-between-statements': 'off', // Disable base rule for @typescript-eslint/padding-line-between-statements.
@@ -119,10 +115,12 @@ module.exports = [
       'space-before-blocks': 'off', // Disable base rule for @typescript-eslint/space-before-blocks.
       'space-before-function-paren': 'off', // Disable base rule for @typescript-eslint/space-before-function-paren.
       'space-infix-ops': 'off', // Disable base rule for @typescript-eslint/space-infix-ops.
+      '@typescript-eslint/array-type': 'off',
       '@typescript-eslint/await-thenable': 'error',
       '@typescript-eslint/brace-style': ['error', '1tbs'],
       '@typescript-eslint/comma-dangle': ['error', 'always-multiline'],
       '@typescript-eslint/comma-spacing': 'error',
+      '@typescript-eslint/consistent-indexed-object-style': ['error', 'index-signature'],
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'explicit' }],
@@ -131,9 +129,10 @@ module.exports = [
       '@typescript-eslint/indent': ['error', 2],
       '@typescript-eslint/keyword-spacing': ['error', { before: true, after: true }],
       '@typescript-eslint/member-delimiter-style': ['error', { multiline: { delimiter: 'semi' }, singleline: { delimiter: 'comma' } }],
-      '@typescript-eslint/no-duplicate-imports': 'error',
+      '@typescript-eslint/no-confusing-void-expression': 'off',
       '@typescript-eslint/no-empty-function': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-extraneous-class': 'off',
       '@typescript-eslint/no-floating-promises': 'off',
       '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
       '@typescript-eslint/no-shadow': 'error',
@@ -144,6 +143,7 @@ module.exports = [
       '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/no-unsafe-return': 'off',
       '@typescript-eslint/no-unused-vars': ['error', { vars: 'all', args: 'none' }],
+      '@typescript-eslint/non-nullable-type-assertion-style': 'off',
       '@typescript-eslint/prefer-nullish-coalescing': 'error',
       '@typescript-eslint/prefer-optional-chain': 'error',
       '@typescript-eslint/prefer-reduce-type-parameter': 'error',

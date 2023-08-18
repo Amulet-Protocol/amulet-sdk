@@ -13,8 +13,8 @@ describe('withdrawAmtsolTicketAccount', function() {
   };
 
   it('pass', async function() {
-    const { transaction } = await amulet.withdrawAmtsolTicketAccount(param);
+    const { instructions } = await amulet.withdrawAmtsolTicketAccount(param);
 
-    assert.isAtLeast(transaction.instructions.length, 1);
+    assert.isAtLeast(instructions.length, 1);
   });
 });

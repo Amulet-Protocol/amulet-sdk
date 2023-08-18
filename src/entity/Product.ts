@@ -11,5 +11,5 @@ export const ProductId = {
   JPool: 10,
   Marinade: 11,
   Drift: 12,
-  Lido: 13
+  Lido: 13,
 } as const;
